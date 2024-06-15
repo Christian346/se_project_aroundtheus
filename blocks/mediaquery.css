@@ -1,0 +1,70 @@
+@media screen and (max-width:1124px) {
+.page{
+    padding:0;
+}
+.page__container{
+ min-width: 320px;
+}
+
+.header__container{
+    flex-direction: column;
+    padding-top:42px;
+}
+.header__logo{
+ width: 126px;
+ height: 24px;
+ padding-bottom:32px;
+ padding-top:28px;
+ padding-left:27px;
+}
+
+.header__title{
+    padding-right: 10px;
+    font-size: 22px;
+    line-height: 26.63px;
+    max-width: 196px;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 25px;
+    text-align: center;
+}
+.header__span{
+   font-size: 14px;
+   line-height: 16.94px;
+   padding-top: 14px;
+}
+.header__inner{
+  padding-top: 30px;
+}
+
+.header__editicon{
+    height:18px;
+    width:18px;
+}
+.header__editbutton{
+    height:18px;
+    width:18px;
+    top:5px;
+}
+
+
+.header__plusbutton{
+    margin:0 auto;
+    margin-top:36px ;
+    align-self: center;
+    width:282px;
+}
+
+.header__plusicon{
+    height:16px;
+    width:16px;
+}
+
+.footer{
+    font-size: 14px;
+    line-height: 16.94px;
+    padding-left: 19px;
+    padding-bottom:36px;
+}
+
+}
