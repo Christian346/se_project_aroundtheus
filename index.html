@@ -6,16 +6,18 @@
     <meta name="description"/>
     <meta name="keywords" content="HTML, CSS, JavaScript"/>
     <meta name="author" content="Christian Sanchez" />
+    <link rel="stylesheet" href="./vendor/normalize.css">
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="stylesheet" href="./favicon.ico" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=Inter:wght@100..900&family=Kumbh+Sans:wght@400;700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet"/>
     <title>se_project_aroundtheus</title>
 </head>
 <body>
     <div class="page">
+      <div class="page__container">
         <header class="header">
-            <img src="./images/Aroundtheuslogo.svg" alt="main logo">
-            <hr>
+            <img src="./images/Aroundtheuslogo.svg" alt="main logo" class="header__logo">
+            <hr class="header__hr">
             <div class="header__container">
                 <img src="./images/Avatar.png" alt="avatar" class="header__img">
                 <div class="header__inner">
@@ -27,10 +29,11 @@
             </header>
 
         <section class="gallery">
+
            <div class="gallery__card">
             <img src="./images/yosemite-valley.jpg" alt="landscape picture" class="card__image">
             <div class="card__inner">
-               <h3>yosemite-valley</h3>
+               <h3 class="card__text">yosemite-valley</h3>
                <img src="./images/heart.svg" alt="" class="card__heart">
             </div>
            </div>
@@ -38,7 +41,7 @@
            <div class="gallery__card">
             <img src="./images/lake-louise.jpg" alt="landscape picture" class="card__image">
             <div class="card__inner">
-               <h3>Lake Louise</h3>
+               <h3 class="card__text">Lake Louise</h3>
                <img src="./images/heart.svg" alt="" class="card__heart">
             </div>
            </div>
@@ -46,7 +49,7 @@
            <div class="gallery__card">
             <img src="./images/bald-mountains.jpg" alt="landscape picture" class="card__image">
             <div class="card__inner">
-               <h3>Bald Mountains</h3>
+               <h3 class="card__text">Bald Mountains</h3>
                <img src="./images/heart.svg" alt="" class="card__heart">
             </div>
            </div>
@@ -54,7 +57,7 @@
            <div class="gallery__card">
             <img src="./images/latemar.jpg" alt="landscape picture" class="card__image">
             <div class="card__inner">
-               <h3>Latemar</h3>
+               <h3 class="card__text">Latemar</h3>
                <img src="./images/heart.svg" alt="" class="card__heart">
             </div>
            </div>
@@ -62,7 +65,7 @@
            <div class="gallery__card">
             <img src="./images/vanoise-national-park.jpg" alt="landscape picture" class="card__image">
             <div class="card__inner">
-               <h3>Vanoise Nationa...</h3>
+               <h3 class="card__text">Vanoise Nationa...</h3>
                <img src="./images/heart.svg" alt="" class="card__heart">
             </div>
            </div>
@@ -70,16 +73,16 @@
            <div class="gallery__card">
             <img src="./images/lago-di-braies.jpg" alt="landscape picture" class="card__image">
             <div class="card__inner">
-               <h3>Lago di Braies</h3>
+               <h3 class="card__text">Lago di Braies</h3>
                <img src="./images/heart.svg" alt="" class="card__heart">
             </div>
            </div>
         </section>
 
-
         <footer class="footer">
-         <p>© 2022 Around The U.S.</p>
+         <p class="footer__paragraph">© 2022 Around The U.S.</p>
         </footer>
+    </div>
     </div>
 </body>
 </html>
