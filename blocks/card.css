@@ -1,0 +1,33 @@
+.card__image{
+    height: 282px;
+    width:100%;
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+     padding-bottom: 25px;
+}
+.card__inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card__text{
+    margin: 0;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29.05px;
+    padding-left:20px;
+     padding-bottom: 25px;
+}
+
+.card__heart{
+    height: 18px;
+    width: 21px;
+    margin-left: auto;
+    padding-right:20px;
+    padding-bottom: 25px;
+}
+.card__heart:hover{
+    cursor: pointer;
+    opacity: .5;
+}
