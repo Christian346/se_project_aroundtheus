@@ -1,15 +1,15 @@
-.gallery{
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- padding-top: 51px;
- padding-bottom:67px;
- gap:17px;
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 51px;
+  padding-bottom: 67px;
+  gap: 17px;
 }
 
-.gallery__card{
-   background-color: #fff;
-   width: 282px;
-   color:#000;
-   border-radius: 10px;
+.gallery__card {
+  background-color: #fff;
+  width: 282px;
+  color: #000;
+  border-radius: 10px;
 }
