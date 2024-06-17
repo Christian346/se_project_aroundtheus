@@ -1,87 +1,21 @@
-.header__container{
-    display: flex;
-    align-items: center;
-    padding-top:40px;
-}
 .header__logo{
  width: 173px;
  height: 33px;
  padding-bottom: 41px;
 }
-.header__hr{
-background-color: #545454;
-}
-.header__title{
-    margin: 0;
-    padding-right: 16px;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 42px;
-    line-height: 48px;
-    max-width: 415px;
-    height: 77px;
-    padding-left: 30px;
-    padding-right: 25px;
-}
-.header__span{
-   margin:0;
-   padding:0;
-   display: block;
-   font-size: 18px;
-   font-weight: 400;
-   line-height: 21.78px;
-}
-.header__inner{
-  display: flex;
-  align-items:flex-start;
-  margin:0;
-  padding:0;
-}
-.header__img{
-    height:120px ;
-    width:120px ;
-}
-.header__editicon{
-    height:24px;
-    width:24px;
-}
-.header__editbutton{
-    margin:0;
-    padding:0;
-    height:24px;
-    width:24px;
-    background-color:transparent;
-    border: none;
-    position:relative;
-    top:15px
-}
-.header__editbutton:hover{
- cursor:pointer;
- opacity: .5;
+
+.header{
+display: flex;
+flex-direction: column;
 }
 
-.header__plusbutton{
-    margin-left: auto;
-    align-self: center;
-    height:50px;
-    width:150px;
-    background-color:transparent;
-}
-.header__plusbutton:hover{
-  cursor:pointer;
-  opacity: .5;
-}
-.header__plusicon{
-    height:22px;
-    width:22px;
+.header__divider{
+  border-bottom: 1px solid #545454;
+   flex-grow: 0.95;
+   opacity: .7;
 }
 
 @media screen and (max-width:1280px) {
-
-.header__container{
-    flex-direction: column;
-    padding-top:42px;
-}
 .header__logo{
  width: 126px;
  height: 24px;
@@ -89,48 +23,5 @@ background-color: #545454;
  padding-top:28px;
  padding-left:27px;
 }
-
-.header__title{
-    padding-right: 10px;
-    font-size: 22px;
-    line-height: 26.63px;
-    max-width: 196px;
-    height: 50px;
-    padding-left: 30px;
-    padding-right: 25px;
-    text-align: center;
-}
-.header__span{
-   font-size: 14px;
-   line-height: 16.94px;
-   padding-top: 14px;
-}
-.header__inner{
-  padding-top: 30px;
 }
 
-.header__editicon{
-    height:18px;
-    width:18px;
-}
-.header__editbutton{
-    height:18px;
-    width:18px;
-    top:5px;
-}
-
-
-.header__plusbutton{
-    margin:0 auto;
-    margin-top:36px ;
-    align-self: center;
-    width:282px;
-}
-
-.header__plusicon{
-    height:16px;
-    width:16px;
-}
-
-
-}

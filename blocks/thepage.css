@@ -1,19 +1,22 @@
-.page{
+
+.thepage{
     background-color:#000;
     color:#fff;
     display: flex;
     justify-content: center;
     padding:45px 200px 60px;
 }
-.page__container{
+
+.thepage__container{
  max-width: 880px;
 }
 
 @media screen and (max-width:1280px) {
-.page{
+.thepage{
     padding:0;
 }
-.page__container{
+
+.thepage__container{
  min-width: 320px;
 }
 }

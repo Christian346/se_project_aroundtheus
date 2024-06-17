@@ -1,12 +1,11 @@
 @import url(../vendor/normalize.css);
 @import url(../blocks/thepage.css);
 @import url(../blocks/header.css);
+@import url(../blocks/lowheader.css);
 @import url(../blocks/gallery.css);
 @import url(../blocks/card.css);
 @import url(../blocks/footer.css);
 @import url(../blocks/fonts.css);
-@import url(../blocks/mediaquery.css);
-
 
 /*
 @media screen and (max-width:1280px) {
