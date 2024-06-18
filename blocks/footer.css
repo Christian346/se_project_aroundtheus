@@ -4,8 +4,7 @@
   font-size: 18px;
   line-height: 21.78px;
   color: rgba(84, 84, 84, 1);
-  padding-top: 48px;
-  padding-bottom: 36px;
+  padding-top: 67px;
   max-width: 318px;
 }
 
@@ -20,6 +19,8 @@
     font-weight: 400;
     line-height: 16.94px;
     padding-left: 19px;
-    max-width: 282px;
+    max-width: 281px;
+    padding-top: 48px;
+    padding-bottom: 36px;
   }
 }
