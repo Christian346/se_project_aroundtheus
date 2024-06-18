@@ -5,7 +5,7 @@
 @import url(../blocks/gallery.css);
 @import url(../blocks/card.css);
 @import url(../blocks/footer.css);
-@import url(../blocks/fonts.css);
+@import url(../vendor/fonts.css);
 
 /*
 @media screen and (max-width:1280px) {
@@ -79,5 +79,3 @@
 
 }
 */
-
-

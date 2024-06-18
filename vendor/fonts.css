@@ -1,0 +1,16 @@
+@font-face {
+  src: url(../vendor/fonts/Inter-VariableFont_slnt\,wght.ttf) format('truetype');
+  font-family:"Inter";
+  font-weight: 900;
+}
+@font-face {
+  src: url(../vendor/fonts/Inter-VariableFont_slnt\,wght.ttf) format('truetype');
+  font-family:"Inter";
+  font-weight: 400;
+}
+@font-face {
+  src: url(../vendor/fonts/Inter-VariableFont_slnt\,wght.ttf) format('truetype');
+  font-family:"Inter";
+  font-weight: 500;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');;
