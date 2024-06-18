@@ -85,7 +85,7 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 1280px) {
   .lowheader {
     flex-direction: column;
     padding-top: 42px;
@@ -93,7 +93,7 @@
 
   .lowheader__textcontainer {
     padding: 0;
-    padding-right: 10px;
+    margin: 0;
     text-align: center;
   }
 
@@ -106,10 +106,15 @@
   }
 
   .lowheader__span {
-    font-size: 14px;
     line-height: 16.94px;
     padding-top: 14px;
-    max-width: 200px;
+    max-width: 90px;
+    text-align: center;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin:0 auto;
+
   }
 
   .lowheader__inner {
@@ -118,6 +123,7 @@
 
   .editbutton-margin {
     margin-top: 4px;
+    margin-left: 10px;
   }
 
   .lowheader__editbutton {

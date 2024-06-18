@@ -3,7 +3,9 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
-  color: #545454;
+  color: rgba(84, 84, 84, 1);
+  padding-top: 48px;
+  padding-bottom:36px;
 }
 
 .footer__paragraph {
@@ -12,9 +14,10 @@
 
 @media screen and (max-width: 1280px) {
   .footer {
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 14px;
+    font-weight: 400;
     line-height: 16.94px;
     padding-left: 19px;
-    padding-bottom: 36px;
   }
 }

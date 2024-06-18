@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 51px;
-  padding-bottom: 67px;
   gap: 17px;
 }
 
@@ -13,4 +12,9 @@
   width: 282px;
   color: #000;
   border-radius: 10px;
+}
+@media screen and (max-width: 1280px) {
+.gallery {
+  padding-top: 36px;
+}
 }
