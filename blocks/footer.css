@@ -6,6 +6,7 @@
   color: rgba(84, 84, 84, 1);
   padding-top: 48px;
   padding-bottom: 36px;
+  max-width: 318px;
 }
 
 .footer__paragraph {
@@ -19,5 +20,6 @@
     font-weight: 400;
     line-height: 16.94px;
     padding-left: 19px;
+    max-width: 282px;
   }
 }
