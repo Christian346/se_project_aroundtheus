@@ -28,6 +28,7 @@
   font-weight: 400;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   line-height: 21.78px;
+  max-width: 373px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -92,15 +93,16 @@
   }
 
   .lowheader__textcontainer {
+    padding: 0;
     padding-right: 10px;
     text-align: center;
   }
 
   .lowheader__title {
-    padding-right: 10px;
     font-size: 22px;
+    padding: 0;
     line-height: 26.63px;
-    max-width: 196px;
+    max-width: 198px;
     text-align: center;
   }
 
@@ -108,6 +110,7 @@
     font-size: 14px;
     line-height: 16.94px;
     padding-top: 14px;
+    max-width: 198px;
   }
 
   .lowheader__inner {
