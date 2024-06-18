@@ -110,11 +110,10 @@
     padding-top: 14px;
     max-width: 90px;
     text-align: center;
-    white-space:nowrap;
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin:0 auto;
-
+    margin: 0 auto;
   }
 
   .lowheader__inner {
