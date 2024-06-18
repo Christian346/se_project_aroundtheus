@@ -12,6 +12,9 @@
   font-size: 42px;
   line-height: 48px;
   max-width: 415px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .lowheader__textcontainer {
   padding-left: 30px;
@@ -25,6 +28,9 @@
   font-weight: 400;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   line-height: 21.78px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .lowheader__inner {
