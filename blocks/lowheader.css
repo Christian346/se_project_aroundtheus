@@ -110,11 +110,9 @@
   .lowheader__span {
     line-height: 16.94px;
     padding-top: 14px;
+    font-size: 14px;
     max-width: 90px;
     text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
     margin: 0 auto;
   }
 

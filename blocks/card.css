@@ -23,7 +23,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 200px;
+  max-width: 219px;
 }
 
 .card__heart {
@@ -34,11 +34,10 @@
   height: 18px;
   width: 21px;
   margin-left: auto;
-  margin-right: 30px;
 }
 
-.card__heart-margin{
- margin-right: 30px;
+.card__heart-margin {
+  margin-right: 20px;
 }
 
 .card__heart:hover {
