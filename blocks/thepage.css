@@ -1,16 +1,19 @@
-.thepage{
-background-color: #000;
-color: #fff;
+.thepage {
+  background-color: #000;
+  color: #fff;
 }
 .thepage__content {
   font-family: "Inter", sans-serif;
 
   display: flex;
   justify-content: center;
-  padding: 45px 200px 60px;
+  padding-bottom: 60px;
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 .thepage__container {
+  margin-top: 45px;
   max-width: 880px;
 }
 
