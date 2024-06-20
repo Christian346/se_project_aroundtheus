@@ -14,16 +14,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-right: 18px;
 }
 
 .lowheader__textcontainer {
-  padding-left: 30px;
-  padding-right: 25px;
+  display: flex;
 }
 
 .lowheader__span {
   margin: 0;
   padding: 0;
+  padding-top: 7px;
   font-size: 18px;
   font-weight: 400;
   font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -36,9 +37,11 @@
 
 .lowheader__inner {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
   margin: 0;
   padding: 0;
+  padding-left: 30px;
 }
 
 .lowheader__img {
@@ -103,22 +106,21 @@
     padding: 0;
     line-height: 26.63px;
     max-width: 198px;
-    text-align: center;
   }
 
   .lowheader__span {
     line-height: 16.94px;
     padding-top: 14px;
     font-size: 14px;
-    max-width: 55px;
+    max-width: 60px;
     margin: 0 auto;
-    text-align: center;
   }
 
   .lowheader__inner {
     padding-top: 30px;
-    width: 100%;
+    padding-left: 0px;
     justify-content: center;
+    margin: 0 auto;
   }
 
   .editbutton-margin {
@@ -129,15 +131,16 @@
   .lowheader__editbutton {
     height: 18px;
     width: 18px;
-    position: relative;
-    z-index: 1;
   }
 
   .lowheader__plusbutton {
     margin: 0 auto;
-    margin-top: 36px;
     align-self: center;
     width: 282px;
+  }
+
+  .lowerheader__plusbutton-margintop{
+    margin-top: 36px;
   }
 
   .lowheader__plusicon {
