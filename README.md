@@ -2,6 +2,8 @@
 
 -link to page:
 https://christian346.github.io/se_project_aroundtheus/
+-link to video:
+https://drive.google.com/file/d/1AJwy44Om7yjU_IE6PqC0DJ-BXby4TyrQ/view?usp=sharing
 
 ### Overview
 
