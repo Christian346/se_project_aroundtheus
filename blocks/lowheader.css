@@ -61,9 +61,6 @@
   background-position: center;
   background-size: cover;
   border: 1px solid rgba(255, 255, 255, 1);
-}
-
-.editbutton-margin {
   margin-top: 15px;
 }
 
@@ -123,14 +120,11 @@
     margin: 0 auto;
   }
 
-  .editbutton-margin {
-    margin-top: 4px;
-    margin-left: 10px;
-  }
-
   .lowheader__editbutton {
     height: 18px;
     width: 18px;
+    margin-top: 4px;
+    margin-left: 10px;
   }
 
   .lowheader__plusbutton {
