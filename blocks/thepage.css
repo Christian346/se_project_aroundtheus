@@ -1,24 +1,18 @@
 .thepage {
+  font-family: "Inter", sans-serif;
   background-color: #000;
   color: #fff;
-}
-.thepage__content {
-  font-family: "Inter", sans-serif;
-
   display: flex;
   justify-content: center;
-  padding-bottom: 60px;
-  margin-left: 200px;
-  margin-right: 200px;
+  padding: 45px 200px 60px;
 }
 
 .thepage__container {
-  margin-top: 45px;
   max-width: 880px;
 }
 
 @media screen and (max-width: 1279px) {
-  .thepage__content {
+  .thepage {
     padding: 0;
   }
 
