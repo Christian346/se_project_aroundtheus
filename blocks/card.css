@@ -29,7 +29,7 @@
 .card__heart {
   background: url(../images/heart.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   border: none;
   height: 18px;
   width: 21px;

@@ -1,0 +1,123 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; /*take all four corners*/
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /**pop up should be on top of all*/
+  /*display: flex;*/
+  align-items: center;
+  justify-content: center;
+  padding: 0px 19px;
+  display: none;
+}
+.modal_opened {
+  display: flex;
+}
+
+.modal__container {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 34px 36px 36px 36px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal__close {
+  background-image: url("../images/CloseIcon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  /*top:-45px;
+  right:-45px;*/
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+}
+.modal__close:hover{
+  opacity: .60;
+  transform: rotate(-45deg);
+}
+
+.modal__heading {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  font-size: 24.05px;
+  line-height: 29.05px;
+  padding-bottom: 54px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input {
+  color: #000;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+  padding-bottom: 13.26px;
+  margin-bottom: 29.74px;
+}
+.modal__input:last-of-type {
+  margin-bottom: 48px;
+}
+.modal__input::-webkit-input-placeholder {
+  color: #000;
+}
+.modal__input:-moz-placeholder {
+  color: #000;
+}
+
+.modal__button {
+  font-family: "Inter", sans-serif;
+  width: 358px;
+  height: 50.15px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+.modal__button:hover{
+ opacity: .8;
+}
+
+@media screen and (max-width: 1279px) {
+  .modal__container {
+    width: 282px;
+    padding: 25px 22px 25px 22px;
+  }
+
+  .modal__button {
+    width: 238px;
+  }
+  .modal__heading {
+    font-size: 18px;
+    line-height: 21.78px;
+  }
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    bottom: calc(100% + 10px);
+    left: calc(88% + 10px);
+  }
+  .modal__form {
+  width:238px;
+}
+}
