@@ -24,3 +24,16 @@ let initialCards = [
     link: "https://unsplash.com/photos/brown-rock-formation-beside-blue-sea-under-blue-sky-and-white-clouds-during-daytime-EEwfeFr6J44",
   },
 ];
+
+let profileEditBtn = document.querySelector(".lowheader__editbutton");
+let profileEditModal = document.querySelector(".modal");
+let profileModalCloseBtn = document.querySelector(".modal__close")
+
+
+profileEditBtn.addEventListener("click", addEditButton )/*()=>{the body of toggle edit button could go here} */
+profileModalCloseBtn.addEventListener("click",()=>{
+  profileEditModal.classList.remove('modal_opened')
+})
+function addEditButton(){
+  profileEditModal.classList.add("modal_opened")
+}
