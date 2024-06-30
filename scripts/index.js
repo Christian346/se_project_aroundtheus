@@ -1,5 +1,4 @@
-let initialCards = [
-  {
+let initialCards = [{
     name: "El Pico Duarte",
     link: "https://unsplash.com/photos/forest-covered-with-fogs-W7oPDwcqccQ",
   },
@@ -29,11 +28,186 @@ let profileEditBtn = document.querySelector(".lowheader__editbutton");
 let profileEditModal = document.querySelector(".modal");
 let profileModalCloseBtn = document.querySelector(".modal__close")
 
+let profileTitle = document.querySelector('.lowheader__title')
+let profileDescription = document.querySelector('.lowheader__span')
+let profileTitleInput = document.querySelector('#profile-title-input')
+let profileDescriptionInput = document.querySelector('#profile-description-input')
 
-profileEditBtn.addEventListener("click", addEditButton )/*()=>{the body of toggle edit button could go here} */
-profileModalCloseBtn.addEventListener("click",()=>{
+//let profileSaveBtn = document.querySelector('#profilesavebtn')
+let profileEditForm = profileEditModal.querySelector('.modal__form')
+
+let cardTemplate = document.querySelector(".card-template").content.firstElementChild;
+
+let cardListEl = document.querySelector(".gallery")
+
+
+//functions
+function closePopUp() {
   profileEditModal.classList.remove('modal_opened')
-})
-function addEditButton(){
+}
+
+function addEditButton() {
+  profileTitleInput.value = profileTitle.textContent
+  profileDescriptionInput.value = profileDescription.textContent
   profileEditModal.classList.add("modal_opened")
 }
+
+function GetCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true)
+
+  const cardImageEl = cardElement.querySelector('.card__image')
+  const cardTitleEl = cardElement.querySelector('.card__text')
+
+  cardImageEl.setAttribute("alt", cardData.name) //Im confused in how to properly set the attributes of this element?!
+  cardImageEl.setAttribute("src", cardData.link)
+  cardTitleEl.textContent = cardData.name;
+
+  return cardElement
+}
+
+
+//handler function
+
+function handleProfileEditSubmit(event) {
+  event.preventDefault();
+  profileTitle.textContent = profileTitleInput.value
+  profileDescription.textContent = profileDescriptionInput.value
+  closePopUp();
+}
+
+profileEditForm.addEventListener('submit', handleProfileEditSubmit)
+
+profileEditBtn.addEventListener("click", addEditButton) /*()=>{the body of toggle edit button could go here} */
+
+profileModalCloseBtn.addEventListener("click", () => {
+  closePopUp(); // you could delete the arrow function and just use the name of closePopup as reference
+})
+
+//loops
+/*
+for (let i = 0; i < initialCards.length; i++) {
+  let card = initialCards[i];
+}
+*/
+
+initialCards.forEach((cardData) => {
+  const cardElement = GetCardElement(cardData)
+  cardListEl.append(cardElement);
+
+})
+
+
+
+
+
+//-----------
+/*
+< article class = "card" >
+  <
+  img
+src = "./images/yosemite-valley.jpg"
+alt = "landscape picture"
+class = "card__image" /
+  >
+  <
+  div class = "card__inner" >
+  <
+  h2 class = "card__text" > yosemite - valley < /h2> <
+  button
+class = "card__heart"
+type = "button"
+aria - label = "button to like" >
+  < /button> <
+  /div> <
+  /article> <
+  article class = "card" >
+  <
+  img
+src = "./images/lake-louise.jpg"
+alt = "landscape picture"
+class = "card__image" /
+  >
+  <
+  div class = "card__inner" >
+  <
+  h2 class = "card__text" > Lake Louise < /h2> <
+  button
+class = "card__heart"
+type = "button"
+aria - label = "button to like" >
+  < /button> <
+  /div> <
+  /article> <
+  article class = "card" >
+  <
+  img
+src = "./images/bald-mountains.jpg"
+alt = "landscape picture"
+class = "card__image" /
+  >
+  <
+  div class = "card__inner" >
+  <
+  h2 class = "card__text" > Bald Mountains < /h2> <
+  button
+class = "card__heart"
+type = "button"
+aria - label = "button to like" >
+  < /button> <
+  /div> <
+  /article> <
+  article class = "card" >
+  <
+  img
+src = "./images/latemar.jpg"
+alt = "landscape picture"
+class = "card__image" /
+  >
+  <
+  div class = "card__inner" >
+  <
+  h2 class = "card__text" > Latemar < /h2> <
+  button
+class = "card__heart"
+type = "button"
+aria - label = "button to like" >
+  < /button> <
+  /div> <
+  /article> <
+  article class = "card" >
+  <
+  img
+src = "./images/vanoise-national-park.jpg"
+alt = "landscape picture"
+class = "card__image" /
+  >
+  <
+  div class = "card__inner" >
+  <
+  h2 class = "card__text" > Vanoise National Park < /h2> <
+  button
+class = "card__heart"
+type = "button"
+aria - label = "button to like" >
+  < /button> <
+  /div> <
+  /article> <
+  article class = "card" >
+  <
+  img
+src = "./images/lago-di-braies.jpg"
+alt = "landscape picture"
+class = "card__image" /
+  >
+  <
+  div class = "card__inner" >
+  <
+  h2 class = "card__text" > Lago di Braies < /h2> <
+  button
+class = "card__heart"
+type = "button"
+aria - label = "button to like" >
+  < /button> <
+  /div> <
+  /article>
+*/

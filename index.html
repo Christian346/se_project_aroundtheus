@@ -45,96 +45,7 @@
             ></button>
           </section>
           <section class="gallery">
-            <article class="card">
-              <img
-                src="./images/yosemite-valley.jpg"
-                alt="landscape picture"
-                class="card__image"
-              />
-              <div class="card__inner">
-                <h2 class="card__text">yosemite-valley</h2>
-                <button
-                  class="card__heart"
-                  type="button"
-                  aria-label="button to like"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="landscape picture"
-                class="card__image"
-              />
-              <div class="card__inner">
-                <h2 class="card__text">Lake Louise</h2>
-                <button
-                  class="card__heart"
-                  type="button"
-                  aria-label="button to like"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="landscape picture"
-                class="card__image"
-              />
-              <div class="card__inner">
-                <h2 class="card__text">Bald Mountains</h2>
-                <button
-                  class="card__heart"
-                  type="button"
-                  aria-label="button to like"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="./images/latemar.jpg"
-                alt="landscape picture"
-                class="card__image"
-              />
-              <div class="card__inner">
-                <h2 class="card__text">Latemar</h2>
-                <button
-                  class="card__heart"
-                  type="button"
-                  aria-label="button to like"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="./images/vanoise-national-park.jpg"
-                alt="landscape picture"
-                class="card__image"
-              />
-              <div class="card__inner">
-                <h2 class="card__text">Vanoise National Park</h2>
-                <button
-                  class="card__heart"
-                  type="button"
-                  aria-label="button to like"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="./images/lago-di-braies.jpg"
-                alt="landscape picture"
-                class="card__image"
-              />
-              <div class="card__inner">
-                <h2 class="card__text">Lago di Braies</h2>
-                <button
-                  class="card__heart"
-                  type="button"
-                  aria-label="button to like"
-                ></button>
-              </div>
-            </article>
+
           </section>
         </main>
         <footer class="footer">
@@ -146,15 +57,36 @@
             <button class="modal__close"></button>
             <h2 class="modal__heading">Edit Profile</h2>
             <form class="modal__form">
-              <input type="text" name="lowheader__title" class="modal__input" placeholder="Jacques Cousteau" />
-              <input type="text" name="lowheader__span" class="modal__input" placeholder="Explorer"/>
-              <button class="modal__button">Save</button>
+              <input type="text" name="lowheader__title" id="profile-title-input" class="modal__input" placeholder="Jacques Cousteau" />
+              <input type="text" name="lowheader__span" id="profile-description-input" class="modal__input" placeholder="Explorer"/>
+              <button class="modal__button" id="profilesavebtn">Save</button>
             </form>
           </div>
         </div>
 
       </div>
     </div>
+
+    <template class="card-template">
+      <article class="card">
+              <img
+                src=""
+                alt=""
+                class="card__image"
+              />
+              <div class="card__inner">
+                <h2 class="card__text"></h2>
+                <button
+                  class="card__heart"
+                  type="button"
+                  aria-label="button to like"
+                ></button>
+              </div>
+            </article>
+
+    </template>
+
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
