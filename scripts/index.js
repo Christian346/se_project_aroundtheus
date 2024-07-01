@@ -1,4 +1,4 @@
-let initialCards = [{
+const initialCards = [{
     name: "El Pico Duarte",
     link: "https://unsplash.com/photos/forest-covered-with-fogs-W7oPDwcqccQ",
   },
@@ -24,21 +24,21 @@ let initialCards = [{
   },
 ];
 
-let profileEditBtn = document.querySelector(".lowheader__editbutton");
-let profileEditModal = document.querySelector(".modal");
-let profileModalCloseBtn = document.querySelector(".modal__close")
+const profileEditBtn = document.querySelector(".lowheader__editbutton");
+const profileEditModal = document.querySelector(".modal");
+const profileModalCloseBtn = document.querySelector(".modal__close")
 
-let profileTitle = document.querySelector('.lowheader__title')
-let profileDescription = document.querySelector('.lowheader__span')
-let profileTitleInput = document.querySelector('#profile-title-input')
-let profileDescriptionInput = document.querySelector('#profile-description-input')
+const profileTitle = document.querySelector('.lowheader__title')
+const profileDescription = document.querySelector('.lowheader__span')
+const profileTitleInput = document.querySelector('#profile-title-input')
+const profileDescriptionInput = document.querySelector('#profile-description-input')
 
 //let profileSaveBtn = document.querySelector('#profilesavebtn')
-let profileEditForm = profileEditModal.querySelector('.modal__form')
+const profileEditForm = profileEditModal.querySelector('.modal__form')
 
-let cardTemplate = document.querySelector(".card-template").content.firstElementChild;
+const cardTemplate = document.querySelector(".card-template").content.firstElementChild;
 
-let cardListEl = document.querySelector(".gallery")
+const cardListEl = document.querySelector(".gallery")
 
 
 //functions
@@ -46,13 +46,13 @@ function closePopUp() {
   profileEditModal.classList.remove('modal_opened')
 }
 
-function addEditButton() {
+function handleAddEditButton() {
   profileTitleInput.value = profileTitle.textContent
   profileDescriptionInput.value = profileDescription.textContent
   profileEditModal.classList.add("modal_opened")
 }
 
-function GetCardElement(cardData) {
+function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true)
 
   const cardImageEl = cardElement.querySelector('.card__image')
@@ -77,7 +77,7 @@ function handleProfileEditSubmit(event) {
 
 profileEditForm.addEventListener('submit', handleProfileEditSubmit)
 
-profileEditBtn.addEventListener("click", addEditButton) /*()=>{the body of toggle edit button could go here} */
+profileEditBtn.addEventListener("click", handleAddEditButton) /*()=>{the body of toggle edit button could go here} */
 
 profileModalCloseBtn.addEventListener("click", () => {
   closePopUp(); // you could delete the arrow function and just use the name of closePopup as reference
@@ -95,9 +95,6 @@ initialCards.forEach((cardData) => {
   cardListEl.append(cardElement);
 
 })
-
-
-
 
 
 //-----------
