@@ -1,26 +1,27 @@
 const initialCards = [{
     name: "El Pico Duarte",
-    link: "https://unsplash.com/photos/forest-covered-with-fogs-W7oPDwcqccQ",
+    link: "https://images.unsplash.com/photo-1538430352266-de6bcba9a06b?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
+
   {
     name: "Mount Rushmore",
-    link: "https://unsplash.com/photos/a-group-of-presidents-carved-into-the-side-of-a-mountain-JqR0rtygBfM",
+    link: "https://plus.unsplash.com/premium_photo-1661855590183-87806182951b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Yellowstone Park",
-    link: "https://unsplash.com/photos/green-trees-under-blue-sky-and-white-clouds-during-daytime-eprFKRjtoE0",
+    link: "https://images.unsplash.com/photo-1594073632422-ef9768f87fa4?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "The Everglades",
-    link: "https://unsplash.com/photos/leafless-trees-between-river-rTkEjSss93U",
+    link: "https://images.unsplash.com/photo-1569007244429-d61733753006?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Death Valley",
-    link: "https://unsplash.com/photos/brown-concrete-road-during-daytime-2TQwrtZnl08",
+    link: "https://images.unsplash.com/photo-1553152531-b98a2fc8d3bf?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Bahia de las Aguilas",
-    link: "https://unsplash.com/photos/brown-rock-formation-beside-blue-sea-under-blue-sky-and-white-clouds-during-daytime-EEwfeFr6J44",
+    link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -91,7 +92,7 @@ for (let i = 0; i < initialCards.length; i++) {
 */
 
 initialCards.forEach((cardData) => {
-  const cardElement = GetCardElement(cardData)
+  const cardElement = getCardElement(cardData)
   cardListEl.append(cardElement);
 
 })
