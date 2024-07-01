@@ -17,7 +17,7 @@
 }
 
 .modal__container {
-  width: 430px;
+  width: 358px;
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -61,7 +61,6 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  width: 358px;
 }
 
 .modal__input {
