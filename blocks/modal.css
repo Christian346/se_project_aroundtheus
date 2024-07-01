@@ -42,8 +42,8 @@
   bottom: calc(100% + 5px);
   left: calc(100% + 5px);
 }
-.modal__close:hover{
-  opacity: .60;
+.modal__close:hover {
+  opacity: 0.6;
   transform: rotate(-45deg);
 }
 
@@ -61,6 +61,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  width: 358px;
 }
 
 .modal__input {
@@ -98,9 +99,9 @@
   border-radius: 2px;
   margin: 0 auto;
 }
-.modal__button:hover{
- opacity: .8;
- cursor: pointer;
+.modal__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {
@@ -125,6 +126,6 @@
     left: calc(88% + 10px);
   }
   .modal__form {
-  width:238px;
-}
+    width: 238px;
+  }
 }
