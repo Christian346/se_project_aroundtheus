@@ -58,8 +58,8 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector('.card__image')
   const cardTitleEl = cardElement.querySelector('.card__text')
 
-  cardImageEl.setAttribute("alt", cardData.name) //Im confused in how to properly set the attributes of this element?!
-  cardImageEl.setAttribute("src", cardData.link)
+  cardImageEl.setAttribute("alt", cardData.name)//
+  cardImageEl.setAttribute("src", cardData.link)// I'm not sure if this is correct my images are not showing
   cardTitleEl.textContent = cardData.name;
 
   return cardElement
