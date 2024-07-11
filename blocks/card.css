@@ -3,6 +3,8 @@
   width: 282px;
   color: #000;
   border-radius: 10px;
+  position: relative;
+
 }
 
 .card__image {
@@ -31,6 +33,36 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 219px;
+}
+.card__trashcan-btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ border: none;
+ position: absolute;
+ right: 18px;
+ top:15px;
+ background-color: transparent;
+}
+.card__trashcan-btn:hover{
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.card__top-bin{
+ width:18px;
+ height: 4.49px;
+ background: url(../images/trashcanIcon.svg);
+ background-repeat: no-repeat;
+ background-size:contain;
+}
+
+.card__lower-bin{
+  width: 15.44px;
+  height: 13.51px;
+ background: url(../images/trashIconlowerpart.svg);
+ background-repeat: no-repeat;
+ background-size:contain;
 }
 
 .card__heart {

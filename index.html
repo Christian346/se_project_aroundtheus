@@ -40,6 +40,7 @@
             </div>
             <button
               class="lowheader__plusbutton"
+              id="add-button"
               type="button"
               aria-label="button to add"
             ></button>
@@ -52,13 +53,25 @@
           <p class="footer__paragraph">© 2022 Around The U.S.</p>
         </footer>
 
-        <div class="modal">
+        <div class="modal js-modal_type_edit">
           <div class="modal__container">
             <button class="modal__close"></button>
             <h2 class="modal__heading">Edit Profile</h2>
             <form class="modal__form">
-              <input type="text" name="lowheader__title" id="profile-title-input" class="modal__input" placeholder="Jacques Cousteau" />
-              <input type="text" name="lowheader__span" id="profile-description-input" class="modal__input" placeholder="Explorer"/>
+              <input type="text" name="title" id="profile-title-input" class="modal__input" placeholder="Jacques Cousteau" />
+              <input type="text" name="span" id="profile-description-input" class="modal__input" placeholder="Explorer"/>
+              <button class="modal__button" id="profilesavebtn">Save</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="modal js-modal_type_add">
+          <div class="modal__container">
+            <button class="modal__close" id="add-close-button"></button>
+            <h2 class="modal__heading">New Place</h2>
+            <form class="modal__form" id="add-card-form">
+              <input type="text" name="title" id="addcard-title-input" class="modal__input" placeholder="Title" />
+              <input type="text" name="link" id="add-description-input" class="modal__input" placeholder="Image Link"/>
               <button class="modal__button" id="profilesavebtn">Save</button>
             </form>
           </div>
@@ -74,6 +87,14 @@
                 alt=""
                 class="card__image"
               />
+              <button
+               class ='card__trashcan-btn'
+               type ='button'
+               aria-label="button to delete"
+              >
+               <img src="./images/trashcanIcon.svg" class ="card__top-bin"alt="">
+               <img src="./images/trashIconlowerpart.svg" class="card__lower-bin" alt="">
+              </button>
               <div class="card__inner">
                 <h2 class="card__text"></h2>
                 <button
