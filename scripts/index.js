@@ -74,15 +74,20 @@ function getCardView(cardData) {
    const cardLikeBtn = cardElement.querySelector(".card__heart")
    //add event listner for like
    cardLikeBtn.addEventListener('click',()=>{
-    // add active class to cardlikebutton
-    cardLikeBtn.classList.toggle('.card__like-button_active')
+  // add active class to cardlikebutton
+    cardLikeBtn.classList.toggle('card__heart_active')
    })
-
+   //find trash icon
+   const trashIcon = cardElement.querySelector('.card__trashcan-btn')
    //add event listner for delete
+   trashIcon.addEventListener('click',()=>{
+     cardElement.remove();
+   })
    //go to card element and call remove in it cardEl.remove()
 
 
    //addevent listner for the image click to make image modal
+
     //open image popup //create a third pop up in html
     //find image element inside popup and replace the src with cardData.link
     // replace alt with card title
@@ -155,6 +160,14 @@ const cardView = getCardView(cardData)
   renderCard(cardView , cardListEl)//needs to pass card data variable which is the object iterations
 });
 
+/*
+const cardLikeBtn = document.querySelectorAll(".card__heart")
+cardLikeBtn.forEach((heart)=>{
+  heart.addEventListener("click", ()=>{
+    heart.classList.toggle('card__heart_active')
+  })
+})
+*/
 
 /* //loop way
 for (let i = 0; i < initialCards.length; i++) {
@@ -175,3 +188,6 @@ initialCards.forEach((cardData) => {
 
 //on trashcan user .remove() in the element in order to remove it
 // the like button needs an addeventlistener click
+
+
+

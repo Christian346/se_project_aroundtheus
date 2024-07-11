@@ -4,7 +4,6 @@
   color: #000;
   border-radius: 10px;
   position: relative;
-
 }
 
 .card__image {
@@ -34,6 +33,7 @@
   overflow: hidden;
   max-width: 219px;
 }
+
 .card__trashcan-btn{
   display: flex;
   flex-direction: column;
@@ -74,6 +74,10 @@
   width: 21px;
   margin-left: auto;
   margin-right: 20px;
+}
+
+.card__heart_active{
+ background:url(../images/Activeheart.svg);
 }
 
 .card__heart:hover {
