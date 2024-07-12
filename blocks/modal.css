@@ -27,6 +27,41 @@
   position: relative;
 }
 
+.modal__pictures_container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 10px;
+  position: relative;
+}
+.modal__pictures {
+  max-height: 75vh;
+  max-width: 75vw;
+}
+.modal__pictures_alt {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+.modal__pictures_close {
+  background-image: url("../images/CloseIcon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  /*top:-45px;
+  right:-45px;*/
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+}
+
 .modal__close {
   background-image: url("../images/CloseIcon.svg");
   background-repeat: no-repeat;
@@ -118,12 +153,19 @@
     font-size: 18px;
     line-height: 21.78px;
   }
+
   .modal__close {
     width: 26px;
     height: 26px;
     bottom: calc(100% + 10px);
     left: calc(88% + 10px);
   }
+
+  .modal__pictures_close {
+    width: 26px;
+    height: 26px;
+  }
+
   .modal__form {
     width: 238px;
   }

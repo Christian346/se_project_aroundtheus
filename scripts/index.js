@@ -43,6 +43,10 @@ const cardAddBtn = document.querySelector("#add-button")
 const cardAddCloseButton = cardAddModal.querySelector("#add-close-button")
 const cardAddForm = cardAddModal.querySelector('#add-card-form')
 
+//find previewImageModal here
+const pictureModal = document.querySelector('.js-modal_type_picture')
+const pictureModalCloseBtn = document.querySelector('#picture-close-button')
+
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate = document.querySelector(".card-template").content.firstElementChild; //grabs content as a fragment and to get the element you need to use its firstelementchild
@@ -64,33 +68,40 @@ function renderCard(cardElement , container){
 function getCardView(cardData) {
   const cardElement = cardTemplate.cloneNode(true);//true brings all the child
 
-  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardImageEl = cardElement.querySelector(".card__image"); // to open picrure modal by clicking this element
   const cardTitleEl = cardElement.querySelector(".card__text");
+  const cardLikeBtn = cardElement.querySelector(".card__heart")
+  const pictureModalImage = document.querySelector(".modal__pictures")
+  const pictureModalAltText = document.querySelector(".modal__pictures_alt")
 
   cardImageEl.setAttribute("alt", cardData.name);
   cardImageEl.setAttribute("src", cardData.link); //cardImageEl.src = cardData.link could work too!
   cardTitleEl.textContent = cardData.name; //set text name of image to the obj
 
-   const cardLikeBtn = cardElement.querySelector(".card__heart")
+  //addEventlistner for image modal
+    cardImageEl.addEventListener('click',()=>{
+      pictureModalImage.setAttribute('src', cardData.link) //go ot the image element and change it to the image source that is  in line 69
+      pictureModalAltText.textContent = cardData.name// switch the alternate text of the modal
+      openPopUp(pictureModal) //open popup function with the (previewimagemodal)
+    })
+    pictureModalCloseBtn.addEventListener('click',()=>{
+      closePopUp(pictureModal)
+    })
+
+      //then finally smooth opening of the modals fade in and fade out
+
+
    //add event listner for like
    cardLikeBtn.addEventListener('click',()=>{
-  // add active class to cardlikebutton
-    cardLikeBtn.classList.toggle('card__heart_active')
+    cardLikeBtn.classList.toggle('card__heart_active') // add active class to cardlikebutton
    })
+
    //find trash icon
    const trashIcon = cardElement.querySelector('.card__trashcan-btn')
    //add event listner for delete
    trashIcon.addEventListener('click',()=>{
-     cardElement.remove();
+     cardElement.remove(); //go to card element and call remove in it cardEl.remove()
    })
-   //go to card element and call remove in it cardEl.remove()
-
-
-   //addevent listner for the image click to make image modal
-
-    //open image popup //create a third pop up in html
-    //find image element inside popup and replace the src with cardData.link
-    // replace alt with card title
 
   return cardElement;
    //cardListEl.prepend(cardElement);
@@ -133,12 +144,8 @@ const cardView = getCardView({
   name,
   link
 })
-/*
-renderCard({
-    name:title,
-    link:link
-  })
-*/
+/*renderCard({name:title,link:link})*/
+
   renderCard(cardView ,cardListEl)
   closePopUp(cardAddModal)
 }
@@ -150,6 +157,7 @@ profileModalCloseBtn.addEventListener("click", () => {closePopUp(profileEditModa
 cardAddBtn.addEventListener('click', handleAddButton );
 cardAddCloseButton.addEventListener('click',()=>{closePopUp(cardAddModal)})
 cardAddForm.addEventListener('submit', handleCardAddSubmit)
+
 
 //places each card into the list in the DOM
 initialCards.forEach((cardData) => {
