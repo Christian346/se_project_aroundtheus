@@ -143,11 +143,14 @@
     max-width: 282px;
     padding: 25px 22px 25px 22px;
     align-items: center;
-  justify-content: start;
   }
   .modal__container_pictures {
-    width: fit-content;
+    max-width:fit-content;
     padding: 0;
+    align-items: start;
+  }
+  .modal__pictures{
+    max-width:283px ;
   }
 
   .modal__button {
