@@ -161,8 +161,8 @@
   .modal__close {
     width: 26px;
     height: 26px;
-    bottom: calc(100% + 10px);
-    left: calc(88% + 10px);
+    bottom: calc(100% + 23.62px);
+    left: calc(88% + 2px);
   }
 
   .modal__form {
