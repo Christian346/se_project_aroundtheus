@@ -26,26 +26,25 @@ const initialCards = [{
 ];
 
 const profileEditBtn = document.querySelector(".lowheader__editbutton");
-const profileEditModal = document.querySelector(".js-modal_type_edit");
+const profileEditModal = document.querySelector(".modal__type_edit_js");
 const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
 
 const profileTitle = document.querySelector(".lowheader__title");
 const profileDescription = document.querySelector(".lowheader__span");
 const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
+const profileDescriptionInput = document.querySelector("#profile-description-input");
 
 //let profileSaveBtn = document.querySelector('#profilesavebtn')
-const cardAddModal = document.querySelector(".js-modal_type_add");
+const cardAddModal = document.querySelector(".modal__type_add_js");
 const cardAddBtn = document.querySelector("#add-button")
 const cardAddCloseButton = cardAddModal.querySelector("#add-close-button")
 const cardAddForm = cardAddModal.querySelector('#add-card-form')
 
 //find previewImageModal here
-const pictureModal = document.querySelector('.js-modal_type_picture')
+const pictureModal = document.querySelector('.modal__type_picture_js')
 const pictureModalCloseBtn = document.querySelector('#picture-close-button')
-
+const pictureModalImage = document.querySelector(".modal__pictures") //It’s better to find constants only 1 time at the top of the file so as not to waste resources on searching them again and again when you call a method (function) because searching is a very hard operation for the browser engine
+const pictureModalCaption = document.querySelector(".modal__pictures_alt")
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate = document.querySelector(".card-template").content.firstElementChild; //grabs content as a fragment and to get the element you need to use its firstelementchild
@@ -65,16 +64,13 @@ function renderCard(cardElement, container) {
   container.prepend(cardElement);
 }
 
-//work to be done here!!!
-//get a clone of card template and add the new source img and text
+//get a clone of card template and add the new source img and text it takes each obj iteration as cardData
 function getCardView(cardData) {
   const cardElement = cardTemplate.cloneNode(true); //true brings all the child
 
   const cardImageEl = cardElement.querySelector(".card__image"); // to open picrure modal by clicking this element
   const cardTitleEl = cardElement.querySelector(".card__text");
   const cardLikeBtn = cardElement.querySelector(".card__heart")
-  const pictureModalImage = document.querySelector(".modal__pictures")
-  const pictureModalAltText = document.querySelector(".modal__pictures_alt")
 
   cardImageEl.setAttribute("alt", cardData.name);
   cardImageEl.setAttribute("src", cardData.link); //cardImageEl.src = cardData.link could work too!
@@ -83,20 +79,16 @@ function getCardView(cardData) {
   //addEventlistner for image modal
   cardImageEl.addEventListener('click', () => {
     pictureModalImage.setAttribute('src', cardData.link) //go ot the image element and change it to the image source that is  in line 69
-    pictureModalAltText.textContent = cardData.name // switch the alternate text of the modal
+    pictureModalImage.alt = cardData.name; //set the alt text to the name
+    pictureModalCaption.textContent = cardData.name // switch the alternate text of the modal
     openPopUp(pictureModal) //open popup function with the (previewimagemodal)
   })
-  pictureModalCloseBtn.addEventListener('click', () => {
-    closePopUp(pictureModal)
-  })
-
-  //then finally smooth opening of the modals fade in and fade out
-
 
   //add event listner for like
   cardLikeBtn.addEventListener('click', () => {
     cardLikeBtn.classList.toggle('card__heart_active') // add active class to cardlikebutton
   })
+
 
   //find trash icon
   const trashIcon = cardElement.querySelector('.card__trashcan-btn')
@@ -144,35 +136,39 @@ function handleCardAddSubmit(e) {
 
   //call render card function and pass an object with name and link
   const cardView = getCardView({
-    name,
-    link
+    name, // name:name, since both vars and properties are called the same you can just put em once
+    link //link:link     you are setting the new variables with the attribute value assigned
   })
   /*renderCard({name:title,link:link})*/
 
-  renderCard(cardView, cardListEl)
-  closePopUp(cardAddModal)
+  renderCard(cardView, cardListEl) // this invokes the rendering function with new variable and which will be appended into the gallery
+  closePopUp(cardAddModal) //close after the process
+  e.target.reset(); //reset the card after inputting
 }
-
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 profileEditBtn.addEventListener("click", handleAddEditButton); /*()=>{the body of toggle edit button could go here} */
 profileModalCloseBtn.addEventListener("click", () => {
   closePopUp(profileEditModal); /* you could delete the arrow function and just use the name of closePopup as reference*/
 });
+cardAddForm.addEventListener('submit', handleCardAddSubmit)
 cardAddBtn.addEventListener('click', handleAddButton);
 cardAddCloseButton.addEventListener('click', () => {
   closePopUp(cardAddModal)
 })
-cardAddForm.addEventListener('submit', handleCardAddSubmit)
+pictureModalCloseBtn.addEventListener('click', () => {
+  closePopUp(pictureModal)
+}) //Close icons should be handled only once in the file body, otherwise you add listeners again and again to the same elements. This can cause a memory leak
+
 
 
 //places each card into the list in the DOM
 initialCards.forEach((cardData) => {
-  // const cardElement = renderCardElement(cardData);
-  //cardListEl.append(cardElement);//apends to the end of cardlist
+  // const cardElement = renderCard(cardData); //get each obj and store it into a variable that will be rendered
+  //cardListEl.append(cardElement);//apends to the end of the gallery also was used in rendering function
 
-  const cardView = getCardView(cardData)
-  renderCard(cardView, cardListEl) //needs to pass card data variable which is the object iterations
+  const cardView = getCardView(cardData) //get the cardview for each particular object element and store it into a variable
+  renderCard(cardView, cardListEl) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
 });
 
 /*
@@ -201,5 +197,20 @@ initialCards.forEach((cardData) => {
 });
 */
 
-//on trashcan user .remove() in the element in order to remove it
-// the like button needs an addeventlistener click
+/*
+You can make a universal handler
+for any close buttons:
+
+  It will look something like that:
+  
+// find all close buttons
+const closeButtons = document.querySelectorAll('.popup__close');
+
+closeButtons.forEach((button) => {
+  // find the closest popup
+  const popup = button.closest('.popup');
+  // set the listener
+  button.addEventListener('click', () => closePopup(popup));
+});
+
+*/
