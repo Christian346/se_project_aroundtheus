@@ -156,12 +156,13 @@
   .modal__heading {
     font-size: 18px;
     line-height: 21.78px;
+    padding-bottom: 75px;
   }
 
   .modal__close {
     width: 26px;
     height: 26px;
-    bottom: calc(100% + 23.62px);
+    bottom: calc(100% + 23.3px);
     left: calc(88% + 2px);
   }
 
