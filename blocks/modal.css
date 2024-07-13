@@ -72,6 +72,9 @@
   bottom: calc(100% + 5px);
   left: calc(100% + 5px);
 }
+.modal__close_picture {
+  position: absolute;
+}
 
 .modal__close:hover {
   opacity: 0.6;
@@ -144,13 +147,14 @@
     padding: 25px 22px 25px 22px;
     align-items: center;
   }
+
   .modal__container_pictures {
-    max-width:fit-content;
-    padding: 0;
+    justify-content: center;
     align-items: start;
+    padding-top: 0;
   }
-  .modal__pictures{
-    max-width:283px ;
+  .modal__pictures {
+    max-width: 240px;
   }
 
   .modal__button {
@@ -158,8 +162,9 @@
     font-size: 14px;
     line-height: 16.94px;
   }
+
   .modal__heading {
-    width:238px;
+    width: 238px;
     font-size: 18px;
     line-height: 21.78px;
     padding-bottom: 75px;
@@ -168,8 +173,12 @@
   .modal__close {
     width: 26px;
     height: 26px;
-    bottom: calc(100% + 18px);
+    bottom: calc(100% + 23.61px);
     left: calc(88% + 2px);
+  }
+  .modal__close_picture {
+    bottom: calc(100% + 3.61px);
+    left: calc(93% + 2px);
   }
 
   .modal__form {
