@@ -26,7 +26,7 @@ const initialCards = [{
 ];
 
 const profileEditBtn = document.querySelector(".lowheader__editbutton");
-const profileEditModal = document.querySelector(".modal__type_edit_js");
+const profileEditModal = document.querySelector(".modal__type_editjs");
 const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
 
 const profileTitle = document.querySelector(".lowheader__title");
@@ -35,13 +35,13 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
 
 //let profileSaveBtn = document.querySelector('#profilesavebtn')
-const cardAddModal = document.querySelector(".modal__type_add_js");
+const cardAddModal = document.querySelector(".modal__type_addjs");
 const cardAddBtn = document.querySelector("#add-button")
 const cardAddCloseButton = cardAddModal.querySelector("#add-close-button")
 const cardAddForm = cardAddModal.querySelector('#add-card-form')
 
 //find previewImageModal here
-const pictureModal = document.querySelector('.modal__type_picture_js')
+const pictureModal = document.querySelector('.modal__type_picturejs')
 const pictureModalCloseBtn = document.querySelector('#picture-close-button')
 const pictureModalImage = document.querySelector(".modal__pictures") //It’s better to find constants only 1 time at the top of the file so as not to waste resources on searching them again and again when you call a method (function) because searching is a very hard operation for the browser engine
 const pictureModalCaption = document.querySelector(".modal__pictures_alt")
@@ -202,7 +202,7 @@ You can make a universal handler
 for any close buttons:
 
   It will look something like that:
-  
+
 // find all close buttons
 const closeButtons = document.querySelectorAll('.popup__close');
 
