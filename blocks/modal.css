@@ -140,8 +140,10 @@
 
 @media screen and (max-width: 1279px) {
   .modal__container {
-    width: 282px;
+    max-width: 282px;
     padding: 25px 22px 25px 22px;
+    align-items: center;
+  justify-content: start;
   }
   .modal__container_pictures {
     width: fit-content;
@@ -154,6 +156,7 @@
     line-height: 16.94px;
   }
   .modal__heading {
+    width:238px;
     font-size: 18px;
     line-height: 21.78px;
     padding-bottom: 75px;
@@ -162,7 +165,7 @@
   .modal__close {
     width: 26px;
     height: 26px;
-    bottom: calc(100% + 23.3px);
+    bottom: calc(100% + 18px);
     left: calc(88% + 2px);
   }
 
