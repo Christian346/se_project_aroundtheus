@@ -26,7 +26,7 @@ const initialCards = [{
 ];
 
 const profileEditBtn = document.querySelector(".lowheader__editbutton");
-const profileEditModal = document.querySelector(".modal_type_edit_js");
+const profileEditModal = document.querySelector(".modal_type_edit-js");
 const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
 
 const profileTitle = document.querySelector(".lowheader__title");
@@ -35,13 +35,13 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
 
 //let profileSaveBtn = document.querySelector('#profilesavebtn')
-const cardAddModal = document.querySelector(".modal_type_add_js");
+const cardAddModal = document.querySelector(".modal_type_add-js");
 const cardAddBtn = document.querySelector("#add-button")
 const cardAddCloseButton = cardAddModal.querySelector("#add-close-button")
 const cardAddForm = cardAddModal.querySelector('#add-card-form')
 
 //find previewImageModal here
-const pictureModal = document.querySelector('.modal_type_picture_js')
+const pictureModal = document.querySelector('.modal_type_picture-js')
 const pictureModalCloseBtn = document.querySelector('#picture-close-button')
 const pictureModalImage = document.querySelector(".modal__pictures") //It’s better to find constants only 1 time at the top of the file so as not to waste resources on searching them again and again when you call a method (function) because searching is a very hard operation for the browser engine
 const pictureModalCaption = document.querySelector(".modal__pictures_alt")
