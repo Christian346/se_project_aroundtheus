@@ -109,16 +109,20 @@
 }
 
 .modal__input:last-of-type {
-
 }
 
 .modal__error {
-  color: red;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: #ff0000;
+  margin-top: 5px;
   margin-bottom: 29.74px;
 }
 .modal__error:last-of-type {
- margin-bottom: 18.26px;
- padding-bottom: 48px;
+  margin-bottom: 18.26px;
+  padding-bottom: 48px;
 }
 
 .modal__input_type_error {
@@ -156,7 +160,7 @@
 }
 
 .modal__button_disabled {
-  background-color: white;
+  background-color: transparent;
   color: #000;
   border: solid 1px #000;
 }

@@ -50,6 +50,9 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate = document.querySelector(".card-template").content.firstElementChild; //grabs content as a fragment and to get the element you need to use its firstelementchild
 const cardListEl = document.querySelector(".gallery");
 
+const modals = document.querySelectorAll(".modal")
+const modal = document.querySelector(".modal")
+
 //function to close the modal
 function closePopUp(modal) {
   modal.classList.remove("modal_opened");
@@ -151,6 +154,8 @@ profileEditBtn.addEventListener("click", handleAddEditButton); /*()=>{the body o
 profileModalCloseBtn.addEventListener("click", () => {
   closePopUp(profileEditModal); /* you could delete the arrow function and just use the name of closePopup as reference*/
 });
+
+
 cardAddForm.addEventListener('submit', handleCardAddSubmit)
 cardAddBtn.addEventListener('click', handleAddButton);
 cardAddCloseButton.addEventListener('click', () => {
@@ -159,6 +164,18 @@ cardAddCloseButton.addEventListener('click', () => {
 pictureModalCloseBtn.addEventListener('click', () => {
   closePopUp(pictureModal)
 }) //Close icons should be handled only once in the file body, otherwise you add listeners again and again to the same elements. This can cause a memory leak
+
+//close modal if clicked outside forms
+modals.forEach((modal) => {
+  modal.addEventListener('click', (e) => {
+    if (e.target == modal) {
+      closePopUp(profileEditModal)
+      closePopUp(pictureModal)
+      closePopUp(cardAddModal)
+
+    }
+  })
+})
 
 
 
