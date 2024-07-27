@@ -62,15 +62,33 @@
                 id="profile-title-input"
                 class="modal__input"
                 placeholder="Jacques Cousteau"
+                required
+                maxlength="40"
+                minlength="2"
               />
+              <span class="modal__error" id="profile-title-input-error"></span>
+
               <input
                 type="text"
                 name="span"
                 id="profile-description-input"
                 class="modal__input"
                 placeholder="Explorer"
+                required
+                maxlength="200"
+                minlength="2"
               />
-              <button class="modal__button" id="profilesavebtn">Save</button>
+              <span
+                class="modal__error"
+                id="profile-description-input-error"
+              ></span>
+              <button
+                class="modal__button"
+                id="profilesavebtn"
+                disabled
+              >
+                Save
+              </button>
             </form>
           </div>
         </div>
@@ -86,15 +104,27 @@
                 id="addcard-title-input"
                 class="modal__input"
                 placeholder="Title"
+                minlength="1"
+                maxlength="30"
+                required
               />
+               <span
+                class="modal__error"
+                id="addcard-title-input-error"
+              ></span>
               <input
-                type="text"
+                type="url"
                 name="link"
                 id="add-description-input"
                 class="modal__input"
                 placeholder="Image Link"
+                required
               />
-              <button class="modal__button" id="profilesavebtn">Save</button>
+              <span
+                class="modal__error"
+                id="add-description-input-error"
+              ></span>
+              <button class="modal__button modal__button_disabled" id="profilesavebtn">Save</button>
             </form>
           </div>
         </div>
@@ -142,6 +172,7 @@
       </article>
     </template>
 
-    <script src="./scripts/index.js"></script>
+    <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
