@@ -165,7 +165,9 @@ pictureModalCloseBtn.addEventListener('click', () => {
   closePopUp(pictureModal)
 }) //Close icons should be handled only once in the file body, otherwise you add listeners again and again to the same elements. This can cause a memory leak
 
+
 //close modal if clicked outside forms
+
 modals.forEach((modal) => {
   modal.addEventListener('click', (e) => {
     if (e.target == modal) {
@@ -175,6 +177,15 @@ modals.forEach((modal) => {
 
     }
   })
+})
+//if you click escape close the modals
+document.querySelector('body').addEventListener('keydown', (e) => {
+  if (e.key === "Escape") {
+    closePopUp(profileEditModal)
+    closePopUp(pictureModal)
+    closePopUp(cardAddModal)
+
+  }
 })
 
 
