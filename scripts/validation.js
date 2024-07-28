@@ -108,10 +108,11 @@ function toggleButtonState(inputEls, submitButton, {
 function setEventListeners(individualForm, configObj) {
   //look for all inputs inside of from
   const {
-    inputSelector
+    inputSelector,
+    submitButtonSelector
   } = configObj // take out a property and create a variable called inputselector
   const inputEls = [...individualForm.querySelectorAll(inputSelector /*configObj.formSelector*/ )]
-  const submitButton = individualForm.querySelector('.modal__button');
+  const submitButton = individualForm.querySelector(submitButtonSelector);
   //loop through all the inputs to see if all are valid
   inputEls.forEach(inputEl => {
     inputEl.addEventListener('input', (e) => {

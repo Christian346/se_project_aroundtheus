@@ -51,7 +51,7 @@ const cardTemplate = document.querySelector(".card-template").content.firstEleme
 const cardListEl = document.querySelector(".gallery");
 
 const modals = document.querySelectorAll(".modal")
-const modal = document.querySelector(".modal")
+
 
 //function to close the modal
 function closePopUp(modal) {
@@ -171,14 +171,24 @@ pictureModalCloseBtn.addEventListener('click', () => {
 modals.forEach((modal) => {
   modal.addEventListener('click', (e) => {
     if (e.target == modal) {
-      closePopUp(profileEditModal)
-      closePopUp(pictureModal)
-      closePopUp(cardAddModal)
+      closePopUp(e.target)
+      // closePopUp(profileEditModal)
+      // closePopUp(pictureModal)
+      //closePopUp(cardAddModal)
 
     }
   })
 })
 //if you click escape close the modals
+modals.forEach((modal) => {
+  modal.addEventListener('keydown', (e)=>{
+    if(e.key === "Escape"){
+      console.log('escaped press')
+    }
+  })
+})
+
+/*
 document.querySelector('body').addEventListener('keydown', (e) => {
   if (e.key === "Escape") {
     closePopUp(profileEditModal)
@@ -187,7 +197,7 @@ document.querySelector('body').addEventListener('keydown', (e) => {
 
   }
 })
-
+*/
 
 
 //places each card into the list in the DOM

@@ -4,6 +4,7 @@
   color: #000;
   border-radius: 10px;
   position: relative;
+  max-height:364.65px;
 }
 
 .card__image {
