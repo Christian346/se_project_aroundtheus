@@ -57,10 +57,12 @@ const modals = document.querySelectorAll(".modal")
 function closePopUp(modal) {
   modal.classList.remove("modal_opened");
   /*profileEditModal*/
+  document.removeEventListener('keydown', escapeModalHandler)
 }
 
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener('keydown', escapeModalHandler)
 }
 
 function renderCard(cardElement, container) {
@@ -180,13 +182,12 @@ modals.forEach((modal) => {
   })
 })
 //if you click escape close the modals
-modals.forEach((modal) => {
-  modal.addEventListener('keydown', (e)=>{
-    if(e.key === "Escape"){
-      console.log('escaped press')
+function escapeModalHandler(e) {
+  const openedPopup = document.querySelector('.modal_opened')
+    if (e.key === "Escape") {
+      closePopUp(openedPopup)
     }
-  })
-})
+}
 
 /*
 document.querySelector('body').addEventListener('keydown', (e) => {
