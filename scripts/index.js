@@ -1,3 +1,6 @@
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
+
 const initialCards = [{
     name: "El Pico Duarte",
     link: "https://images.unsplash.com/photo-1538430352266-de6bcba9a06b?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -24,6 +27,15 @@ const initialCards = [{
     link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+
+const cardData = {
+  name: "Bahia de las Aguilas",
+  link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+}
+//const card = new Card(cardData,".card__template");
+
+
+//VARIABLES
 
 const profileEditBtn = document.querySelector(".lowheader__editbutton");
 const profileEditModal = document.querySelector(".modal_type_edit-js");
@@ -52,6 +64,31 @@ const cardListEl = document.querySelector(".gallery");
 
 const modals = document.querySelectorAll(".modal")
 
+const cardSelector = document.querySelector('.card-template')
+
+//VALIDATION
+
+
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible"
+};
+
+const editFormElement = profileEditModal.querySelector('.modal__form')
+const addFormElement = cardAddModal.querySelector('.modal__form')
+
+const editFormValidator = new FormValidator(validationSettings,editFormElement)
+const addFormValidator = new FormValidator(validationSettings, addFormElement)
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+
+
+//FUNCTIONS
 
 //function to close the modal
 function closePopUp(modal) {
@@ -66,6 +103,9 @@ function openPopUp(modal) {
 }
 
 function renderCard(cardElement, container) {
+  //const card = new Card(data, cardSelector)
+
+ // container.prepend(card.getElementView(cardElement));
   container.prepend(cardElement);
 }
 
@@ -184,9 +224,9 @@ modals.forEach((modal) => {
 //if you click escape close the modals
 function escapeModalHandler(e) {
   const openedPopup = document.querySelector('.modal_opened')
-    if (e.key === "Escape") {
-      closePopUp(openedPopup)
-    }
+  if (e.key === "Escape") {
+    closePopUp(openedPopup)
+  }
 }
 
 /*

@@ -111,6 +111,7 @@ function setEventListeners(individualForm, configObj) {
     inputSelector,
     submitButtonSelector
   } = configObj // take out a property and create a variable called inputselector
+
   const inputEls = [...individualForm.querySelectorAll(inputSelector /*configObj.formSelector*/ )]
   const submitButton = individualForm.querySelector(submitButtonSelector);
   //loop through all the inputs to see if all are valid
