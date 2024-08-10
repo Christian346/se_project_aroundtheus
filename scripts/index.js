@@ -32,7 +32,7 @@ const cardData = {
   name: "Bahia de las Aguilas",
   link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }
-//const card = new Card(cardData,".card__template");
+const card = new Card(cardData,".card__template");
 
 
 //VARIABLES
