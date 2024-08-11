@@ -2,6 +2,7 @@
 // pass all the settings on call
 
 /*make sure your properties match the correct classes! */
+
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -43,6 +44,7 @@ function checkInputValidity(individualForm, inputEl, configObj) {
   hideInputError(individualForm, inputEl, configObj);
 
 } //good
+
 
 
 
@@ -112,6 +114,7 @@ function setEventListeners(individualForm, configObj) {
     submitButtonSelector
   } = configObj // take out a property and create a variable called inputselector
 
+
   const inputEls = [...individualForm.querySelectorAll(inputSelector /*configObj.formSelector*/ )]
   const submitButton = individualForm.querySelector(submitButtonSelector);
   //loop through all the inputs to see if all are valid
@@ -122,6 +125,8 @@ function setEventListeners(individualForm, configObj) {
       toggleButtonState(inputEls, submitButton, configObj);
     })
   })
+
+
   //if input not valid
   //grab validation message
   //add error class to input to make it red

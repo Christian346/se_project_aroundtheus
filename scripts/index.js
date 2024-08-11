@@ -28,12 +28,6 @@ const initialCards = [{
   },
 ];
 
-const cardData = {
-  name: "Bahia de las Aguilas",
-  link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-}
-const card = new Card(cardData,".card__template");
-
 
 //VARIABLES
 
@@ -68,8 +62,8 @@ const cardSelector = document.querySelector('.card-template')
 
 //VALIDATION
 
-
 const validationSettings = {
+  formSelector: ".modal__form", //might not be needed
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
@@ -77,17 +71,25 @@ const validationSettings = {
   errorClass: "modal__error_visible"
 };
 
-const editFormElement = profileEditModal.querySelector('.modal__form')
-const addFormElement = cardAddModal.querySelector('.modal__form')
+const editFormElement = profileEditModal.querySelector('#modal-type-edit')
+const addFormElement = cardAddModal.querySelector('#add-card-form')
 
-const editFormValidator = new FormValidator(validationSettings,editFormElement)
-const addFormValidator = new FormValidator(validationSettings, addFormElement)
+
+const editFormValidator = new FormValidator(validationSettings, '#modal-type-edit')
+const addFormValidator = new FormValidator(validationSettings, '#add-card-form')
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 
-
+//FOREIGN CARD ?
+/*
+const cardData = {
+  name: "Bahia de las Aguilas",
+  link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+}
+const card = new Card(cardData, ".card__template");
+*/
 //FUNCTIONS
 
 //function to close the modal
@@ -105,44 +107,48 @@ function openPopUp(modal) {
 function renderCard(cardElement, container) {
   //const card = new Card(data, cardSelector)
 
- // container.prepend(card.getElementView(cardElement));
+  // container.prepend(card.getElementView(cardElement));
   container.prepend(cardElement);
 }
 
 //get a clone of card template and add the new source img and text it takes each obj iteration as cardData
 function getCardView(cardData) {
-  const cardElement = cardTemplate.cloneNode(true); //true brings all the child
+  const card = new Card(cardData, '.card-template', handleImageClick)
+  return card.getElementView()
+  /*
+    const cardElement = cardTemplate.cloneNode(true); //true brings all the child
+    const cardImageEl = cardElement.querySelector(".card__image"); // to open picrure modal by clicking this element
+    const cardTitleEl = cardElement.querySelector(".card__text");
+    const cardLikeBtn = cardElement.querySelector(".card__heart")
 
-  const cardImageEl = cardElement.querySelector(".card__image"); // to open picrure modal by clicking this element
-  const cardTitleEl = cardElement.querySelector(".card__text");
-  const cardLikeBtn = cardElement.querySelector(".card__heart")
+    cardImageEl.setAttribute("alt", cardData.name);
+    cardImageEl.setAttribute("src", cardData.link); //cardImageEl.src = cardData.link could work too!
+    cardTitleEl.textContent = cardData.name; //set text name of image to the obj
 
-  cardImageEl.setAttribute("alt", cardData.name);
-  cardImageEl.setAttribute("src", cardData.link); //cardImageEl.src = cardData.link could work too!
-  cardTitleEl.textContent = cardData.name; //set text name of image to the obj
+    //addEventlistner for image modal
+    cardImageEl.addEventListener('click', () => {
+      pictureModalImage.setAttribute('src', cardData.link) //go ot the image element and change it to the image source that is  in line 69
+      pictureModalImage.alt = cardData.name; //set the alt text to the name
+      pictureModalCaption.textContent = cardData.name // switch the alternate text of the modal
+      openPopUp(pictureModal) //open popup function with the (previewimagemodal)
+    })
 
-  //addEventlistner for image modal
-  cardImageEl.addEventListener('click', () => {
-    pictureModalImage.setAttribute('src', cardData.link) //go ot the image element and change it to the image source that is  in line 69
-    pictureModalImage.alt = cardData.name; //set the alt text to the name
-    pictureModalCaption.textContent = cardData.name // switch the alternate text of the modal
-    openPopUp(pictureModal) //open popup function with the (previewimagemodal)
-  })
-
-  //add event listner for like
-  cardLikeBtn.addEventListener('click', () => {
-    cardLikeBtn.classList.toggle('card__heart_active') // add active class to cardlikebutton
-  })
+    //add event listner for like
+    cardLikeBtn.addEventListener('click', () => {
+      cardLikeBtn.classList.toggle('card__heart_active') // add active class to cardlikebutton
+    })
 
 
-  //find trash icon
-  const trashIcon = cardElement.querySelector('.card__trashcan-btn')
-  //add event listner for delete
-  trashIcon.addEventListener('click', () => {
-    cardElement.remove(); //go to card element and call remove in it cardEl.remove()
-  })
+    //find trash icon
+    const trashIcon = cardElement.querySelector('.card__trashcan-btn')
+    //add event listner for delete
+    trashIcon.addEventListener('click', () => {
+      cardElement.remove(); //go to card element and call remove in it cardEl.remove()
+    })
+  */
 
-  return cardElement;
+  //return cardElement;
+
   //cardListEl.prepend(cardElement);
   // the two below could be used directly on the foreach loop
   //const cardElement = renderCardElement(cardData);
@@ -167,7 +173,7 @@ function handleAddButton() {
 
 //handler function to update text inside edit profile
 function handleProfileEditSubmit(event) {
-  event.preventDefault();
+ // event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopUp(profileEditModal);
@@ -179,11 +185,21 @@ function handleCardAddSubmit(e) {
   const name = e.target.title.value // title is the name attribute
   const link = e.target.link.value
 
-  //call render card function and pass an object with name and link
-  const cardView = getCardView({
-    name, // name:name, since both vars and properties are called the same you can just put em once
-    link //link:link     you are setting the new variables with the attribute value assigned
+  // TODO Use new card class here
+   //const card = new Card(cardData, '.card-template', handleImageClick)
+   const cardView = getCardView({name,link});// im passing the data from here to the getCardView
+ /* const cardElement = getCardView({
+    name,
+    link
   })
+    */
+  //call render card function and pass an object with name and link
+
+  //card.getElementView()
+  //const cardView = getCardView({
+  //  name, // name:name, since both vars and properties are called the same you can just put em once
+  //  link //link:link     you are setting the new variables with the attribute value assigned
+  // })
   /*renderCard({name:title,link:link})*/
 
   renderCard(cardView, cardListEl) // this invokes the rendering function with new variable and which will be appended into the gallery
@@ -191,7 +207,10 @@ function handleCardAddSubmit(e) {
   e.target.reset(); //reset the card after inputting
 }
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+profileEditForm.addEventListener("submit", (e) => {
+  e.preventDefault(); // now i can add multple lines of code regarding the event handler by the use of arrow function.
+  handleProfileEditSubmit()// i could put e to pass it to the above function but i wouldn't need to now
+});
 profileEditBtn.addEventListener("click", handleAddEditButton); /*()=>{the body of toggle edit button could go here} */
 profileModalCloseBtn.addEventListener("click", () => {
   closePopUp(profileEditModal); /* you could delete the arrow function and just use the name of closePopup as reference*/
@@ -214,10 +233,7 @@ modals.forEach((modal) => {
   modal.addEventListener('click', (e) => {
     if (e.target == modal) {
       closePopUp(e.target)
-      // closePopUp(profileEditModal)
-      // closePopUp(pictureModal)
-      //closePopUp(cardAddModal)
-
+      // closePopUp(profileEditModal) or any other modal
     }
   })
 })
@@ -240,15 +256,31 @@ document.querySelector('body').addEventListener('keydown', (e) => {
 })
 */
 
+// TODO define handle image click function
+function handleImageClick(name, link) {
+  pictureModalImage.setAttribute('src', link) //go ot the image element and change it to the image source that is  in line 69
+  pictureModalImage.alt = name; //set the alt text to the name
+  pictureModalCaption.textContent = /*cardData.*/ name // switch the alternate text of the modal
+  openPopUp(pictureModal)
+}
 
 //places each card into the list in the DOM
 initialCards.forEach((cardData) => {
   // const cardElement = renderCard(cardData); //get each obj and store it into a variable that will be rendered
   //cardListEl.append(cardElement);//apends to the end of the gallery also was used in rendering function
-
-  const cardView = getCardView(cardData) //get the cardview for each particular object element and store it into a variable
+  //const cardView = getCardView(cardData) //get the cardview for each particular object element and store it into a variable
+  //i need to use the card element from the card class that and the selector of the template
+  // TODO pass a third argument, a function to handle image click
+  const card = new Card(cardData, '.card-template', handleImageClick)
+  const cardView = card.getElementView();
+  //TODO call cardview function for avoid repeating yourself.
   renderCard(cardView, cardListEl) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
 });
+
+
+
+
+
 
 /*
 const cardLikeBtn = document.querySelectorAll(".card__heart")
