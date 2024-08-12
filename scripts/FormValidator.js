@@ -2,15 +2,15 @@ class FormValidator {
   constructor(settings, formElementSelector) {
 
     this._settings = settings
-    this._form = document.querySelector(formElementSelector) //queryselect for whichever form selector
+    this._form = /*document.querySelector(*/formElementSelector//) //queryselect for whichever form selector
     this._inputList = [...this._form.querySelectorAll(settings.inputSelector)] //selects all inputs for that specific form
     this._submitButton = this._form.querySelector(settings.submitButtonSelector)
 
-    this._inputSelector = this._form.querySelector(settings.inputSelector);
+    this._inputSelector = settings.inputSelector /*this._form.querySelector*/ /*(/settings.inputSelector);*/
     // this._submitButton = settings.submitButtonSelector;
-    this._inactiveButton = this._form.querySelector(settings.inactiveButtonClass);
-    this._inputError = this._form.querySelector(settings.inputErrorClass);
-    this._error = this._form.querySelector(settings.errorClass);
+    this._inactiveButton = settings.inactiveButtonClass /*this._form.querySelector(settings.inactiveButtonClass);*/
+    this._inputError = settings.inputErrorClass /*this._form.querySelector(settings.inputErrorClass);*/
+    this._error = settings.errorClass /*this._form.querySelector(settings.errorClass);*/
 
     //this._settings = settings; //this refers to the scope that it is within
   }
@@ -49,10 +49,10 @@ class FormValidator {
 
   //no need to pass parameters just use the this properties!
   _toggleButtonState() {
-  
+
     if (this._hasInvalidInput()) {
       this._submitButton.classList.add(this._settings.inactiveButtonClass) //maybe inside parenthis has to be this._inactive check for later
-      this._submitButton.disabled = true;
+      this._submitButton.disabled = true; //shouldn't this make it so that the button is disabled by default?
     } else {
       this._submitButton.classList.remove(this._settings.inactiveButtonClass)
       this._submitButton.disabled = false;

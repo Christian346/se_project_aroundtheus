@@ -32,10 +32,11 @@ _getTemplate(){
   .content.querySelector(".card")
   .cloneNode(true);
 }
-// returns the element of the card but doesn't render 
+// returns the element of the card but doesn't render
 getElementView(){
   this._element = this._getTemplate();
   this._element.querySelector(".card__image").src/*style.backgroundImage*/ = this._link;/*`url(${this._link})`;*/
+  this._element.querySelector(".card__image").alt = this._name;
   this._element.querySelector(".card__text").textContent = this._name;
   this._setEventListeners();
   return this._element;

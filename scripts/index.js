@@ -74,22 +74,12 @@ const validationSettings = {
 const editFormElement = profileEditModal.querySelector('#modal-type-edit')
 const addFormElement = cardAddModal.querySelector('#add-card-form')
 
-
-const editFormValidator = new FormValidator(validationSettings, '#modal-type-edit')
-const addFormValidator = new FormValidator(validationSettings, '#add-card-form')
+const editFormValidator = new FormValidator(validationSettings, editFormElement /*'#modal-type-edit'*/)
+const addFormValidator = new FormValidator(validationSettings, addFormElement/*'#add-card-form'*/)
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-
-//FOREIGN CARD ?
-/*
-const cardData = {
-  name: "Bahia de las Aguilas",
-  link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-}
-const card = new Card(cardData, ".card__template");
-*/
 //FUNCTIONS
 
 //function to close the modal
@@ -173,7 +163,7 @@ function handleAddButton() {
 
 //handler function to update text inside edit profile
 function handleProfileEditSubmit(event) {
- // event.preventDefault();
+  // event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopUp(profileEditModal);
@@ -186,13 +176,16 @@ function handleCardAddSubmit(e) {
   const link = e.target.link.value
 
   // TODO Use new card class here
-   //const card = new Card(cardData, '.card-template', handleImageClick)
-   const cardView = getCardView({name,link});// im passing the data from here to the getCardView
- /* const cardElement = getCardView({
+  //const card = new Card(cardData, '.card-template', handleImageClick)
+  const cardView = getCardView({
     name,
     link
-  })
-    */
+  }); // im passing the data from here to the getCardView
+  /* const cardElement = getCardView({
+     name,
+     link
+   })
+     */
   //call render card function and pass an object with name and link
 
   //card.getElementView()
@@ -209,7 +202,7 @@ function handleCardAddSubmit(e) {
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault(); // now i can add multple lines of code regarding the event handler by the use of arrow function.
-  handleProfileEditSubmit()// i could put e to pass it to the above function but i wouldn't need to now
+  handleProfileEditSubmit() // i could put e to pass it to the above function but i wouldn't need to now
 });
 profileEditBtn.addEventListener("click", handleAddEditButton); /*()=>{the body of toggle edit button could go here} */
 profileModalCloseBtn.addEventListener("click", () => {
@@ -239,8 +232,8 @@ modals.forEach((modal) => {
 })
 //if you click escape close the modals
 function escapeModalHandler(e) {
-  const openedPopup = document.querySelector('.modal_opened')
   if (e.key === "Escape") {
+    const openedPopup = document.querySelector('.modal_opened')
     closePopUp(openedPopup)
   }
 }
@@ -271,16 +264,11 @@ initialCards.forEach((cardData) => {
   //const cardView = getCardView(cardData) //get the cardview for each particular object element and store it into a variable
   //i need to use the card element from the card class that and the selector of the template
   // TODO pass a third argument, a function to handle image click
-  const card = new Card(cardData, '.card-template', handleImageClick)
-  const cardView = card.getElementView();
+  //const card = new Card(cardData, '.card-template', handleImageClick)
+  const cardView = /*card.*/getCardView(cardData);
   //TODO call cardview function for avoid repeating yourself.
   renderCard(cardView, cardListEl) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
 });
-
-
-
-
-
 
 /*
 const cardLikeBtn = document.querySelectorAll(".card__heart")
