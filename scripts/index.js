@@ -201,8 +201,8 @@ function handleCardAddSubmit(e) {
   e.target.reset(); //reset the card after inputting
   //newPlaceBtn.disabled = true;
   addFormValidator.disabledButton();
-  // search for button, disable it, add a class
-  
+  // search for button, disable it, add a class would've worked as well
+
 }
 
 profileEditForm.addEventListener("submit", (e) => {
