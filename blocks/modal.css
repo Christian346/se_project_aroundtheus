@@ -31,7 +31,6 @@
   margin: 0 auto;
   padding: 34px 36px 36px 36px;
   border-radius: 10px;
-  position: relative;
 }
 
 .modal__container_pictures {
@@ -108,9 +107,6 @@
   padding-bottom: 13.26px;
 }
 
-.modal__input:last-of-type {
-}
-
 .modal__error {
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -121,7 +117,9 @@
   margin-bottom: 29.74px;
   opacity: 0;
   pointer-events: none;
+  height: 1px; /*prevents the div from growing when error msg appears*/
 }
+
 .modal__error:last-of-type {
   margin-bottom: 18.26px;
   padding-bottom: 48px;

@@ -1,8 +1,11 @@
+//i'd like to keep this a reference code to review for the future even if it's not needed anymore please.
+
+
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
 /*make sure your properties match the correct classes! */
-
+/*
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -89,24 +92,24 @@ function toggleButtonState(inputEls, submitButton, {
     submitButton.classList.remove(inactiveButtonClass)
     submitButton.disabled = false
   */ //good
-  /*
-    let foundInvalid = false;
-      inputEls.forEach((inputEl)=>{
-         if(!inputEl.validity.valid){
-          foundInvalid = true;
-         }
-      })
-      if(foundInvalid){
-        submitButton.classList.add(inactiveButtonClass)
-        submitButton.disabled = true
-      }else{
-        submitButton.classList.remove(inactiveButtonClass)
-        submitButton.disabled= false
-      }
-    */ //this works as intended
-} //good
+/*
+  let foundInvalid = false;
+    inputEls.forEach((inputEl)=>{
+       if(!inputEl.validity.valid){
+        foundInvalid = true;
+       }
+    })
+    if(foundInvalid){
+      submitButton.classList.add(inactiveButtonClass)
+      submitButton.disabled = true
+    }else{
+      submitButton.classList.remove(inactiveButtonClass)
+      submitButton.disabled= false
+    }
+  */ //this works as intended
+//} //good
 
-
+/*
 function setEventListeners(individualForm, configObj) {
   //look for all inputs inside of from
   const {
@@ -115,7 +118,8 @@ function setEventListeners(individualForm, configObj) {
   } = configObj // take out a property and create a variable called inputselector
 
 
-  const inputEls = [...individualForm.querySelectorAll(inputSelector /*configObj.formSelector*/ )]
+  const inputEls = [...individualForm.querySelectorAll(inputSelector /*configObj.formSelector*/ // )]
+/*
   const submitButton = individualForm.querySelector(submitButtonSelector);
   //loop through all the inputs to see if all are valid
   inputEls.forEach(inputEl => {
@@ -125,34 +129,34 @@ function setEventListeners(individualForm, configObj) {
       toggleButtonState(inputEls, submitButton, configObj);
     })
   })
+*/
 
-
-  //if input not valid
-  //grab validation message
-  //add error class to input to make it red
-  // display error message
-  //disable btn
-  //if all inputs are valid
-  //enable button
-  //reset error messages
-}
+//if input not valid
+//grab validation message
+//add error class to input to make it red
+// display error message
+//disable btn
+//if all inputs are valid
+//enable button
+//reset error messages
+//}
 
 //order of parameters matter!
-function enableValidation(configObj) {
-  //const formEls = Array.from(document.querySelectorAll("form"));// list of node items not an array , gotta convert it to an array
-  const formEls = [...document.querySelectorAll(configObj.formSelector /*".modal__form"*/ )]; //spread op to copy the items inside it kinda of like array.from() needs to be inside [] cuz it workds with arrays
 
-  formEls.forEach((individualForm) => {
-    individualForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-    });
+//function enableValidation(configObj) {
+//const formEls = Array.from(document.querySelectorAll("form"));// list of node items not an array , gotta convert it to an array
+//const formEls = [...document.querySelectorAll(configObj.formSelector /*".modal__form"*/ )]; //spread op to copy the items inside it kinda of like array.from() needs to be inside [] cuz it workds with arrays
 
-    setEventListeners(individualForm, configObj);
+//formEls.forEach((individualForm) => {
+// individualForm.addEventListener('submit', (e) => {
+//   e.preventDefault();
+// });
 
-  })
+// setEventListeners(individualForm, configObj);
 
-}
+//})
+//}
 
 
 
-enableValidation(config);
+//enableValidation(config);

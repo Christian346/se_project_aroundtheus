@@ -60,6 +60,7 @@ const modals = document.querySelectorAll(".modal")
 
 const cardSelector = document.querySelector('.card-template')
 
+
 //VALIDATION
 
 const validationSettings = {
@@ -74,8 +75,8 @@ const validationSettings = {
 const editFormElement = profileEditModal.querySelector('#modal-type-edit')
 const addFormElement = cardAddModal.querySelector('#add-card-form')
 
-const editFormValidator = new FormValidator(validationSettings, editFormElement /*'#modal-type-edit'*/)
-const addFormValidator = new FormValidator(validationSettings, addFormElement/*'#add-card-form'*/)
+const editFormValidator = new FormValidator(validationSettings, editFormElement /*'#modal-type-edit'*/ )
+const addFormValidator = new FormValidator(validationSettings, addFormElement /*'#add-card-form'*/ )
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
@@ -198,6 +199,10 @@ function handleCardAddSubmit(e) {
   renderCard(cardView, cardListEl) // this invokes the rendering function with new variable and which will be appended into the gallery
   closePopUp(cardAddModal) //close after the process
   e.target.reset(); //reset the card after inputting
+  //newPlaceBtn.disabled = true;
+  addFormValidator.disabledButton();
+  // search for button, disable it, add a class
+  
 }
 
 profileEditForm.addEventListener("submit", (e) => {
@@ -265,7 +270,7 @@ initialCards.forEach((cardData) => {
   //i need to use the card element from the card class that and the selector of the template
   // TODO pass a third argument, a function to handle image click
   //const card = new Card(cardData, '.card-template', handleImageClick)
-  const cardView = /*card.*/getCardView(cardData);
+  const cardView = /*card.*/ getCardView(cardData);
   //TODO call cardview function for avoid repeating yourself.
   renderCard(cardView, cardListEl) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
 });

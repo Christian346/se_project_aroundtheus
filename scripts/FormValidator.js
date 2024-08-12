@@ -49,14 +49,18 @@ class FormValidator {
 
   //no need to pass parameters just use the this properties!
   _toggleButtonState() {
-
     if (this._hasInvalidInput()) {
-      this._submitButton.classList.add(this._settings.inactiveButtonClass) //maybe inside parenthis has to be this._inactive check for later
-      this._submitButton.disabled = true; //shouldn't this make it so that the button is disabled by default?
+       //shouldn't this make it so that the button is disabled by default?
+     this.disabledButton()
     } else {
       this._submitButton.classList.remove(this._settings.inactiveButtonClass)
       this._submitButton.disabled = false;
     }
+  }
+
+  disabledButton(){
+  this._submitButton.classList.add(this._settings.inactiveButtonClass) //maybe inside parenthis has to be this._inactive check for later
+  this._submitButton.disabled = true;
   }
 
 
