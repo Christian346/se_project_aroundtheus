@@ -1,8 +1,8 @@
 class FormValidator {
-  constructor(settings, formElementSelector) {
+  constructor(settings, formElementType) {
 
     this._settings = settings
-    this._form = /*document.querySelector(*/formElementSelector//) //queryselect for whichever form selector
+    this._form = /*document.querySelector(*/formElementType//) //queryselect for whichever form selector
     this._inputList = [...this._form.querySelectorAll(settings.inputSelector)] //selects all inputs for that specific form
     this._submitButton = this._form.querySelector(settings.submitButtonSelector)
 
@@ -39,7 +39,7 @@ class FormValidator {
   _hasInvalidInput() {
     return !this._inputList.every((inputEl) => inputEl.validity.valid)
   }
-
+     //evertime i make a reference of a property or method it will need the this. keyword for it to work within class
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
       return this._showInputError(inputEl);

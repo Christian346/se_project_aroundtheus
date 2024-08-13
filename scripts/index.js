@@ -54,8 +54,8 @@ const pictureModalCaption = document.querySelector(".modal__pictures_alt")
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate = document.querySelector(".card-template").content.firstElementChild; //grabs content as a fragment and to get the element you need to use its firstelementchild
-const cardListEl = document.querySelector(".gallery");
-
+const cardGallerySection = document.querySelector(".gallery");
+//this variable is where the cards will be appended or rendered
 const modals = document.querySelectorAll(".modal")
 
 const cardSelector = document.querySelector('.card-template')
@@ -72,11 +72,11 @@ const validationSettings = {
   errorClass: "modal__error_visible"
 };
 
-const editFormElement = profileEditModal.querySelector('#modal-type-edit')
-const addFormElement = cardAddModal.querySelector('#add-card-form')
+//const editFormElement = profileEditModal.querySelector('#modal-type-edit')
+//const addFormElement = cardAddModal.querySelector('#add-card-form')
 
-const editFormValidator = new FormValidator(validationSettings, editFormElement /*'#modal-type-edit'*/ )
-const addFormValidator = new FormValidator(validationSettings, addFormElement /*'#add-card-form'*/ )
+const editFormValidator = new FormValidator(validationSettings, profileEditForm /*'#modal-type-edit'*/ )
+const addFormValidator = new FormValidator(validationSettings, cardAddForm /*'#add-card-form'*/ )
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
@@ -106,6 +106,8 @@ function renderCard(cardElement, container) {
 function getCardView(cardData) {
   const card = new Card(cardData, '.card-template', handleImageClick)
   return card.getElementView()
+
+
   /*
     const cardElement = cardTemplate.cloneNode(true); //true brings all the child
     const cardImageEl = cardElement.querySelector(".card__image"); // to open picrure modal by clicking this element
@@ -128,19 +130,19 @@ function getCardView(cardData) {
     cardLikeBtn.addEventListener('click', () => {
       cardLikeBtn.classList.toggle('card__heart_active') // add active class to cardlikebutton
     })
+*/
 
+  //find trash icon
+  //const trashIcon = cardElement.querySelector('.card__trashcan-btn')
+  //add event listner for delete
+  //trashIcon.addEventListener('click', () => {
+  //  cardElement.remove(); //go to card element and call remove in it cardEl.remove()
+  // })
 
-    //find trash icon
-    const trashIcon = cardElement.querySelector('.card__trashcan-btn')
-    //add event listner for delete
-    trashIcon.addEventListener('click', () => {
-      cardElement.remove(); //go to card element and call remove in it cardEl.remove()
-    })
-  */
 
   //return cardElement;
 
-  //cardListEl.prepend(cardElement);
+  //cardGallerySection.prepend(cardElement);
   // the two below could be used directly on the foreach loop
   //const cardElement = renderCardElement(cardData);
   //return cardElement;
@@ -148,6 +150,7 @@ function getCardView(cardData) {
 
 //handler to set the text inside the edit
 function handleAddEditButton() {
+  //turn it into an arrow func prevent default and rearrange the value and text content and close the modal
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   // profileEditModal.classList.add("modal_opened");
@@ -178,9 +181,10 @@ function handleCardAddSubmit(e) {
 
   // TODO Use new card class here
   //const card = new Card(cardData, '.card-template', handleImageClick)
-  const cardView = getCardView({
+
+  const newCard = getCardView({
     name,
-    link
+    link //since this is an object that's destructured  the order doesnt matter , if its an array the order matters
   }); // im passing the data from here to the getCardView
   /* const cardElement = getCardView({
      name,
@@ -195,14 +199,13 @@ function handleCardAddSubmit(e) {
   //  link //link:link     you are setting the new variables with the attribute value assigned
   // })
   /*renderCard({name:title,link:link})*/
-
-  renderCard(cardView, cardListEl) // this invokes the rendering function with new variable and which will be appended into the gallery
+  //card section
+  renderCard(newCard, cardGallerySection) // this invokes the rendering function with new variable and which will be appended into the gallery
   closePopUp(cardAddModal) //close after the process
   e.target.reset(); //reset the card after inputting
   //newPlaceBtn.disabled = true;
   addFormValidator.disabledButton();
   // search for button, disable it, add a class would've worked as well
-
 }
 
 profileEditForm.addEventListener("submit", (e) => {
@@ -265,14 +268,14 @@ function handleImageClick(name, link) {
 //places each card into the list in the DOM
 initialCards.forEach((cardData) => {
   // const cardElement = renderCard(cardData); //get each obj and store it into a variable that will be rendered
-  //cardListEl.append(cardElement);//apends to the end of the gallery also was used in rendering function
+  //cardGallerySection.append(cardElement);//apends to the end of the gallery also was used in rendering function
   //const cardView = getCardView(cardData) //get the cardview for each particular object element and store it into a variable
   //i need to use the card element from the card class that and the selector of the template
   // TODO pass a third argument, a function to handle image click
   //const card = new Card(cardData, '.card-template', handleImageClick)
   const cardView = /*card.*/ getCardView(cardData);
   //TODO call cardview function for avoid repeating yourself.
-  renderCard(cardView, cardListEl) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
+  renderCard(cardView, cardGallerySection) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
 });
 
 /*
@@ -318,3 +321,5 @@ closeButtons.forEach((button) => {
 });
 
 */
+
+//ctrl d selects all versions of it and ctrl click to find the source function
