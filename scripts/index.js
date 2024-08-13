@@ -107,45 +107,6 @@ function getCardView(cardData) {
   const card = new Card(cardData, '.card-template', handleImageClick)
   return card.getElementView()
 
-
-  /*
-    const cardElement = cardTemplate.cloneNode(true); //true brings all the child
-    const cardImageEl = cardElement.querySelector(".card__image"); // to open picrure modal by clicking this element
-    const cardTitleEl = cardElement.querySelector(".card__text");
-    const cardLikeBtn = cardElement.querySelector(".card__heart")
-
-    cardImageEl.setAttribute("alt", cardData.name);
-    cardImageEl.setAttribute("src", cardData.link); //cardImageEl.src = cardData.link could work too!
-    cardTitleEl.textContent = cardData.name; //set text name of image to the obj
-
-    //addEventlistner for image modal
-    cardImageEl.addEventListener('click', () => {
-      pictureModalImage.setAttribute('src', cardData.link) //go ot the image element and change it to the image source that is  in line 69
-      pictureModalImage.alt = cardData.name; //set the alt text to the name
-      pictureModalCaption.textContent = cardData.name // switch the alternate text of the modal
-      openPopUp(pictureModal) //open popup function with the (previewimagemodal)
-    })
-
-    //add event listner for like
-    cardLikeBtn.addEventListener('click', () => {
-      cardLikeBtn.classList.toggle('card__heart_active') // add active class to cardlikebutton
-    })
-*/
-
-  //find trash icon
-  //const trashIcon = cardElement.querySelector('.card__trashcan-btn')
-  //add event listner for delete
-  //trashIcon.addEventListener('click', () => {
-  //  cardElement.remove(); //go to card element and call remove in it cardEl.remove()
-  // })
-
-
-  //return cardElement;
-
-  //cardGallerySection.prepend(cardElement);
-  // the two below could be used directly on the foreach loop
-  //const cardElement = renderCardElement(cardData);
-  //return cardElement;
 }
 
 //handler to set the text inside the edit
