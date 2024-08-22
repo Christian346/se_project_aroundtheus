@@ -1,76 +1,32 @@
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
+import FormValidator from "../scripts/FormValidator.js";
+import Card from "../scripts/Card.js";
+import {closePopUp,openPopUp,escapeModalHandler} from"../utils/utils.js"
+import Section from "../scripts/Section.js";
+import {
+  initialCards,
+  profileEditBtn,
+  profileEditModal,
+  profileModalCloseBtn,
+  profileTitle,
+  profileDescription,
+  profileTitleInput,
+  profileDescriptionInput,
+  cardAddModal,
+  cardAddBtn,
+  cardAddCloseButton,
+  cardAddForm,
+  pictureModal,
+  pictureModalCloseBtn,
+  pictureModalImage,
+  pictureModalCaption,
+  profileEditForm,
+  cardTemplate,
+  cardGallerySection,
+  modals,
+  cardSelector,
+  validationSettings
+} from "../utils/constants.js"
 
-const initialCards = [{
-    name: "El Pico Duarte",
-    link: "https://images.unsplash.com/photo-1538430352266-de6bcba9a06b?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-
-  {
-    name: "Mount Rushmore",
-    link: "https://plus.unsplash.com/premium_photo-1661855590183-87806182951b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Yellowstone Park",
-    link: "https://images.unsplash.com/photo-1594073632422-ef9768f87fa4?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "The Everglades",
-    link: "https://images.unsplash.com/photo-1569007244429-d61733753006?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Death Valley",
-    link: "https://images.unsplash.com/photo-1553152531-b98a2fc8d3bf?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Bahia de las Aguilas",
-    link: "https://images.unsplash.com/photo-1595788429812-6e185229a294?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
-
-
-//VARIABLES
-
-const profileEditBtn = document.querySelector(".lowheader__editbutton");
-const profileEditModal = document.querySelector(".modal_type_edit-js");
-const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
-
-const profileTitle = document.querySelector(".lowheader__title");
-const profileDescription = document.querySelector(".lowheader__span");
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector("#profile-description-input");
-
-//let profileSaveBtn = document.querySelector('#profilesavebtn')
-const cardAddModal = document.querySelector(".modal_type_add-js");
-const cardAddBtn = document.querySelector("#add-button")
-const cardAddCloseButton = cardAddModal.querySelector("#add-close-button")
-const cardAddForm = cardAddModal.querySelector('#add-card-form')
-
-//find previewImageModal here
-const pictureModal = document.querySelector('.modal_type_picture-js')
-const pictureModalCloseBtn = document.querySelector('#picture-close-button')
-const pictureModalImage = document.querySelector(".modal__pictures") //It’s better to find constants only 1 time at the top of the file so as not to waste resources on searching them again and again when you call a method (function) because searching is a very hard operation for the browser engine
-const pictureModalCaption = document.querySelector(".modal__pictures_alt")
-
-const profileEditForm = profileEditModal.querySelector(".modal__form");
-const cardTemplate = document.querySelector(".card-template").content.firstElementChild; //grabs content as a fragment and to get the element you need to use its firstelementchild
-const cardGallerySection = document.querySelector(".gallery");
-//this variable is where the cards will be appended or rendered
-const modals = document.querySelectorAll(".modal")
-
-const cardSelector = document.querySelector('.card-template')
-
-
-//VALIDATION
-
-const validationSettings = {
-  formSelector: ".modal__form", //might not be needed
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible"
-};
 
 //const editFormElement = profileEditModal.querySelector('#modal-type-edit')
 //const addFormElement = cardAddModal.querySelector('#add-card-form')
@@ -80,20 +36,43 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm /*'#a
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+//============ClASSES INSTANTIATIONS
+/*const imageModal = new popUpWithImage()
+ imageModal.setEventListeners()
+*/
+/*
+Create an instance of the UserInfo class in index.js and use its methods as described.
+*/
+
+const cardList = new Section({
+  items: initialCards,
+  renderer:renderCard
+
+}, cardGallerySection);
+
+cardList.renderMethod();
+
+
+
+//
 
 //FUNCTIONS
 
 //function to close the modal
+/*
 function closePopUp(modal) {
   modal.classList.remove("modal_opened");
   /*profileEditModal*/
-  document.removeEventListener('keydown', escapeModalHandler)
-}
-
+  //document.removeEventListener('keydown', escapeModalHandler)
+//}
+// */
+/*
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener('keydown', escapeModalHandler)
 }
+*/
+
 
 function renderCard(cardElement, container) {
   //const card = new Card(data, cardSelector)
@@ -101,6 +80,8 @@ function renderCard(cardElement, container) {
   // container.prepend(card.getElementView(cardElement));
   container.prepend(cardElement);
 }
+
+
 
 //get a clone of card template and add the new source img and text it takes each obj iteration as cardData
 function getCardView(cardData) {
@@ -200,12 +181,14 @@ modals.forEach((modal) => {
   })
 })
 //if you click escape close the modals
+/*
 function escapeModalHandler(e) {
   if (e.key === "Escape") {
     const openedPopup = document.querySelector('.modal_opened')
     closePopUp(openedPopup)
   }
 }
+*/
 
 /*
 document.querySelector('body').addEventListener('keydown', (e) => {
@@ -227,6 +210,7 @@ function handleImageClick(name, link) {
 }
 
 //places each card into the list in the DOM
+
 initialCards.forEach((cardData) => {
   // const cardElement = renderCard(cardData); //get each obj and store it into a variable that will be rendered
   //cardGallerySection.append(cardElement);//apends to the end of the gallery also was used in rendering function
