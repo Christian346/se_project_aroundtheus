@@ -1,4 +1,5 @@
 //function to close the modal
+
 export function closePopUp(modal) {
   modal.classList.remove("modal_opened");
   /*profileEditModal*/

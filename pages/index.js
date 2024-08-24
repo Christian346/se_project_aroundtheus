@@ -1,7 +1,9 @@
 import FormValidator from "../scripts/FormValidator.js";
 import Card from "../scripts/Card.js";
-import {closePopUp,openPopUp,escapeModalHandler} from"../utils/utils.js"
+//import {closePopUp,openPopUp,escapeModalHandler} from"../utils/utils.js"
 import Section from "../scripts/Section.js";
+//import PopupWithForm from "../scripts/PopupWithForm.js"
+import  UserInfo  from "../scripts/UserInfo.js";
 import {
   initialCards,
   profileEditBtn,
@@ -26,6 +28,9 @@ import {
   cardSelector,
   validationSettings
 } from "../utils/constants.js"
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
+
 
 
 //const editFormElement = profileEditModal.querySelector('#modal-type-edit')
@@ -43,18 +48,48 @@ addFormValidator.enableValidation();
 /*
 Create an instance of the UserInfo class in index.js and use its methods as described.
 */
+//const editProfilePopup = new PopupWithForm('.modal_type_edit-js', ()=>{});
+// call setEventListeners
+//editProfilePopup.setEventListeners();
+
+
 
 const cardList = new Section({
-  items: initialCards,
-  renderer:renderCard
-
-}, cardGallerySection);
+    items: initialCards,
+    renderer: (individualCard) => {
+      const cardView = getCardView(individualCard);
+      renderCard(cardView, cardGallerySection);
+    },
+  },
+  cardGallerySection
+);
 
 cardList.renderMethod();
-
-
-
 //
+const editProfileForm = new PopupWithForm({
+  modalSelector: '.modal_type_edit-js',
+  handleFormSubmit: handleProfileEditSubmit
+})
+editProfileForm.setEventListeners();
+//
+
+//make a addCardForm
+const addCardForm = new PopupWithForm({
+   modalSelector: '.modal_type_add-js',
+    handleFormSubmit: handleCardAddSubmit
+})
+addCardForm.setEventListeners();
+
+const imagePopup = new PopupWithImage({
+modalSelector: '.modal_type_picture-js'
+});
+imagePopup.setEventListeners();
+
+const userInfo = new UserInfo({
+  nameSelector: '.lowheader__title',
+  descriptionSelector: '.lowheader__span'
+})
+
 
 //FUNCTIONS
 
@@ -76,10 +111,10 @@ function openPopUp(modal) {
 
 function renderCard(cardElement, container) {
   //const card = new Card(data, cardSelector)
-
   // container.prepend(card.getElementView(cardElement));
   container.prepend(cardElement);
 }
+
 
 
 
@@ -90,13 +125,19 @@ function getCardView(cardData) {
 
 }
 
-//handler to set the text inside the edit
-function handleAddEditButton() {
+//handler to set the text inside the edit  take out the add part of the function
+function handleEditButton() {
+    const userData = userInfo.getUserInfo()
+
   //turn it into an arrow func prevent default and rearrange the value and text content and close the modal
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  profileTitleInput.value = userData.userName;
+  profileDescriptionInput.value = userData.userDescription//profileDescription.textContent;
+
   // profileEditModal.classList.add("modal_opened");
-  openPopUp(profileEditModal);
+  editProfileForm.open()
+ // openPopUp(profileEditModal);
+  // use .open() method of popup with form
+
 }
 
 //handler to set the text inside the edit
@@ -104,22 +145,27 @@ function handleAddButton() {
   //profileTitleInput.value = profileTitle.textContent;
   // profileDescriptionInput.value = profileDescription.textContent;
   // above are not needed for that modal
-  openPopUp(cardAddModal);
+ // openPopUp(cardAddModal);
+  addCardForm.open();
 }
 
 //handler function to update text inside edit profile
-function handleProfileEditSubmit(event) {
+function handleProfileEditSubmit(profileData) {
   // event.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closePopUp(profileEditModal);
+ //setUser info goes here
+  // set the instance method from UserInfo setuserinfo() for the code below
+  //profileTitle.textContent = profileData.name;
+  //profileDescription.textContent = profileData.description;
+  userInfo.setUserInfo(profileData)
+  editProfileForm.close();
+  //closePopUp(profileEditModal);
 }
 
-function handleCardAddSubmit(e) {
-  e.preventDefault();
+function handleCardAddSubmit(/*e*/ newCardData) {
+  //e.preventDefault();
   //grab values of the input form then set them whats will be inputted
-  const name = e.target.title.value // title is the name attribute
-  const link = e.target.link.value
+  const name = newCardData.title//e.target.title.value // title is the name attribute
+  const link = newCardData.link//e.target.link.value
 
   // TODO Use new card class here
   //const card = new Card(cardData, '.card-template', handleImageClick)
@@ -143,35 +189,45 @@ function handleCardAddSubmit(e) {
   /*renderCard({name:title,link:link})*/
   //card section
   renderCard(newCard, cardGallerySection) // this invokes the rendering function with new variable and which will be appended into the gallery
-  closePopUp(cardAddModal) //close after the process
-  e.target.reset(); //reset the card after inputting
+  addCardForm.close()
+  //closePopUp(cardAddModal) //close after the process
+
+  //e.target.reset(); //reset the card after inputting
   //newPlaceBtn.disabled = true;
   addFormValidator.disabledButton();
   // search for button, disable it, add a class would've worked as well
 }
 
+/*
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault(); // now i can add multple lines of code regarding the event handler by the use of arrow function.
   handleProfileEditSubmit() // i could put e to pass it to the above function but i wouldn't need to now
 });
-profileEditBtn.addEventListener("click", handleAddEditButton); /*()=>{the body of toggle edit button could go here} */
-profileModalCloseBtn.addEventListener("click", () => {
+*/
+profileEditBtn.addEventListener("click", handleEditButton);
+
+ /*()=>{the body of toggle edit button could go here} */
+/*profileModalCloseBtn.addEventListener("click", () => {
   closePopUp(profileEditModal); /* you could delete the arrow function and just use the name of closePopup as reference*/
-});
+//});
 
 
-cardAddForm.addEventListener('submit', handleCardAddSubmit)
+//cardAddForm.addEventListener('submit', handleCardAddSubmit)
+
 cardAddBtn.addEventListener('click', handleAddButton);
+/*
 cardAddCloseButton.addEventListener('click', () => {
-  closePopUp(cardAddModal)
+  //closePopUp(cardAddModal)
 })
+*/
 pictureModalCloseBtn.addEventListener('click', () => {
-  closePopUp(pictureModal)
+  imagePopup.close()
+  //closePopUp(pictureModal)
 }) //Close icons should be handled only once in the file body, otherwise you add listeners again and again to the same elements. This can cause a memory leak
 
 
 //close modal if clicked outside forms
-
+/*
 modals.forEach((modal) => {
   modal.addEventListener('click', (e) => {
     if (e.target == modal) {
@@ -180,6 +236,7 @@ modals.forEach((modal) => {
     }
   })
 })
+  */
 //if you click escape close the modals
 /*
 function escapeModalHandler(e) {
@@ -203,25 +260,27 @@ document.querySelector('body').addEventListener('keydown', (e) => {
 
 // TODO define handle image click function
 function handleImageClick(name, link) {
-  pictureModalImage.setAttribute('src', link) //go ot the image element and change it to the image source that is  in line 69
-  pictureModalImage.alt = name; //set the alt text to the name
-  pictureModalCaption.textContent = /*cardData.*/ name // switch the alternate text of the modal
-  openPopUp(pictureModal)
+  //pictureModalImage.setAttribute('src', link) //go ot the image element and change it to the image source that is  in line 69
+  //pictureModalImage.alt = name; //set the alt text to the name
+  //pictureModalCaption.textContent = /*cardData.*/ name // switch the alternate text of the modal
+  imagePopup.open({name,link})
+ // openPopUp(pictureModal)
+
 }
 
 //places each card into the list in the DOM
 
-initialCards.forEach((cardData) => {
+//initialCards.forEach((cardData) => {
   // const cardElement = renderCard(cardData); //get each obj and store it into a variable that will be rendered
   //cardGallerySection.append(cardElement);//apends to the end of the gallery also was used in rendering function
   //const cardView = getCardView(cardData) //get the cardview for each particular object element and store it into a variable
   //i need to use the card element from the card class that and the selector of the template
   // TODO pass a third argument, a function to handle image click
   //const card = new Card(cardData, '.card-template', handleImageClick)
-  const cardView = /*card.*/ getCardView(cardData);
+ // const cardView = /*card.*/ getCardView(cardData);
   //TODO call cardview function for avoid repeating yourself.
-  renderCard(cardView, cardGallerySection) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
-});
+ // renderCard(cardView, cardGallerySection) //needs to pass card which is the object iterations and the element in which it will be appended in the gallery
+//});
 
 /*
 const cardLikeBtn = document.querySelectorAll(".card__heart")
