@@ -1,10 +1,11 @@
 import "../pages/index.css";
-import FormValidator from "../scripts/FormValidator.js";
-import Card from "../scripts/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Popup from "../components/Popup.js";
+import Card from "../components/Card.js";
 //import {closePopUp,openPopUp,escapeModalHandler} from"../utils/utils.js"
-import Section from "../scripts/Section.js";
+import Section from "../components/Section.js";
 //import PopupWithForm from "../scripts/PopupWithForm.js"
-import  UserInfo  from "../scripts/UserInfo.js";
+import  UserInfo  from "../components/UserInfo.js";
 import {
   initialCards,
   profileEditBtn,
@@ -29,8 +30,8 @@ import {
   cardSelector,
   validationSettings
 } from "../utils/constants.js"
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 
 
@@ -53,18 +54,18 @@ Create an instance of the UserInfo class in index.js and use its methods as desc
 // call setEventListeners
 //editProfilePopup.setEventListeners();
 
+//const popups = new Popup()
+//popups.setEventListeners()
 
 
 const cardList = new Section({
     items: initialCards,
     renderer: (individualCard) => {
-      const cardView = getCardView(individualCard);
-      renderCard(cardView, cardGallerySection);
+      renderCard(individualCard);
     },
   },
   cardGallerySection
 );
-
 cardList.renderMethod();
 //
 const editProfileForm = new PopupWithForm({
@@ -92,28 +93,11 @@ const userInfo = new UserInfo({
 })
 
 
-//FUNCTIONS
-
-//function to close the modal
-/*
-function closePopUp(modal) {
-  modal.classList.remove("modal_opened");
-  /*profileEditModal*/
-  //document.removeEventListener('keydown', escapeModalHandler)
-//}
-// */
-/*
-function openPopUp(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener('keydown', escapeModalHandler)
-}
-*/
-
-
-function renderCard(cardElement, container) {
+function renderCard(individualCard) {
+    const cardView = getCardView(individualCard);
   //const card = new Card(data, cardSelector)
   // container.prepend(card.getElementView(cardElement));
-  container.prepend(cardElement);
+  cardList.addItem(cardView)
 }
 
 
@@ -189,7 +173,7 @@ function handleCardAddSubmit(/*e*/ newCardData) {
   // })
   /*renderCard({name:title,link:link})*/
   //card section
-  renderCard(newCard, cardGallerySection) // this invokes the rendering function with new variable and which will be appended into the gallery
+  renderCard(newCard) // this invokes the rendering function with new variable and which will be appended into the gallery
   addCardForm.close()
   //closePopUp(cardAddModal) //close after the process
 
@@ -221,10 +205,11 @@ cardAddCloseButton.addEventListener('click', () => {
   //closePopUp(cardAddModal)
 })
 */
-pictureModalCloseBtn.addEventListener('click', () => {
-  imagePopup.close()
+
+//pictureModalCloseBtn.addEventListener('click', () => {
+ // imagePopup.close()
   //closePopUp(pictureModal)
-}) //Close icons should be handled only once in the file body, otherwise you add listeners again and again to the same elements. This can cause a memory leak
+//}) //Close icons should be handled only once in the file body, otherwise you add listeners again and again to the same elements. This can cause a memory leak
 
 
 //close modal if clicked outside forms

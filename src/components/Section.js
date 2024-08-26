@@ -2,10 +2,10 @@ export default class Section {
   constructor({
     items,
     renderer
-  }, containerSelector) {
+  }, containerOption) {
     this._initialArray = items;
     this._renderFunction = renderer
-    this._container = containerSelector
+    this._container = containerOption
 
   }
   //for initial array
@@ -18,8 +18,8 @@ export default class Section {
 
   }
   //to add items afterwards
-  addItem() {
-    this._container.prepend(this._element)
+  addItem(element) {
+    this._container.prepend(element)
   }
 
 }
