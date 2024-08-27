@@ -173,7 +173,8 @@ function handleCardAddSubmit(/*e*/ newCardData) {
   // })
   /*renderCard({name:title,link:link})*/
   //card section
-  renderCard(newCard) // this invokes the rendering function with new variable and which will be appended into the gallery
+  cardList.addItem(newCard)
+  //renderCard(newCard) // this invokes the rendering function with new variable and which will be appended into the gallery
   addCardForm.close()
   //closePopUp(cardAddModal) //close after the process
 
