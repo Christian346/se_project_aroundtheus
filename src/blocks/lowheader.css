@@ -50,6 +50,30 @@
   border-radius: 50%;
 }
 
+.lowheader__profilepiccontainer{
+  position: relative;
+	display: inline-block;
+}
+
+
+.lowheader__editicon{
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	display: none;
+}
+
+.lowheader__profilepiccontainer:hover .lowheader__editicon{
+	position: absolute;
+	right: 40%;
+	top: 40%;
+	display: block;
+}
+
+.lowheader__img:hover {
+   opacity: 0.8;
+}
+
 .lowheader__editbutton {
   margin: 0;
   padding: 0;
