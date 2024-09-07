@@ -22,17 +22,17 @@
         </header>
         <main class="content">
           <section class="lowheader">
-
             <div class="lowheader__profilepiccontainer">
               <img
                 src="<%=require('./images/Avatar.png')%>"
                 alt="avatar"
                 class="lowheader__img"
               />
-              <div class="lowheader__editicon">
+              <div class="lowheader__editicon"><!--change to editiconcontainer-->
                 <img
                   src="<%=require('./images/changeprofilepicpen.svg')%>"
                   alt=""
+                  class ="lowheader__editpen"
                 />
               </div>
             </div>
@@ -139,7 +139,7 @@
     </div>
 
     <!--delete card modal-->
-    <div class="modal modal_type_deletecard-js">
+    <div class="modal modal_type_delete_card-js">
       <div class="modal__container">
         <button class="modal__close" id="add-close-button"></button>
         <h2 class="modal__heading">Are you sure?</h2>
@@ -151,7 +151,7 @@
     <div class="modal modal_type_changeprofilepic-js">
       <div class="modal__container">
         <button class="modal__close" id="add-close-button"></button>
-        <h2 class="modal__heading">Change profile pic</h2>
+        <h2 class="modal__heading">Change profile pic?</h2>
         <form class="modal__form" id="changeprofilepic-form">
           <input
             type="url"
