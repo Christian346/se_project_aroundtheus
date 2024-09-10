@@ -62,6 +62,9 @@ changeAvatarPictureValidator.enableValidation();
 //============ClASSES INSTANTIATIONS
 
 //render the cards
+
+//once we obtain the data or list from API we will use it with the section class!
+/*
 const cardList = new Section({
     items: initialCards,
     renderer: (individualCard) => {
@@ -71,6 +74,7 @@ const cardList = new Section({
   cardGallerySection
 );
 cardList.renderMethod();
+*/
 
 //edit profile fomr popup
 const editProfileForm = new PopupWithForm({
@@ -94,9 +98,11 @@ imagePopup.setEventListeners();
 const userInfo = new UserInfo({
   nameSelector: ".lowheader__title",
   descriptionSelector: ".lowheader__span",
+  AvatarSelector: ".lowheader__img"
 });
 
 
+// last 2 new popup
 
 //new popup for prompting if will delete a card
 const areYouDeletingCardPopup = new PopupWithFormSubmit({
@@ -104,13 +110,11 @@ const areYouDeletingCardPopup = new PopupWithFormSubmit({
 })
 areYouDeletingCardPopup.setEventListeners();
 
-
-
 //new popup for when you decide to change the user's profile pic
 
 const changeProfilePicPopup = new PopupWithForm({
   modalSelector: ".modal_type_changeprofilepic-js",
-  handleFormSubmit: handleChangeAvatarProfilePic
+  handleFormSubmit: handleChangeAvatarSubmit
 })
 changeProfilePicPopup.setEventListeners()
 
@@ -124,11 +128,27 @@ function renderCard(individualCard) {
 
 //get a clone of card template and add the new source img and text it takes each obj iteration as cardData
 function getCardView(cardData) {
-  const card = new Card(cardData, ".card-template", handleImageClick, handleDeleteButton);
+  const card = new Card(cardData, ".card-template", handleImageClick, handleDeleteButton, handleCardLikeClick);
   return card.getElementView();
 }
 
 //HANDLER FUNCTIONS
+//passing the whole card object
+function handleCardLikeClick(card) {
+  if (!card.isLiked) {
+    api.addTheCardLikeState(card._id).then(() => {
+      card.isLiked = true;
+      card.toggleLikeButton()
+    }).catch(console.error);
+  } else if (card.isLiked) {
+    api.deleteTheCardLikeState(card._id).then(() => {
+      card.isLiked = false;
+      card.toggleLikeButton()
+    }).catch(console.error);
+  }
+
+}
+
 
 //handler to set the text inside the edit  take out the add part of the function
 function handleEditButton() {
@@ -143,30 +163,48 @@ function handleEditButton() {
 
 //handler to set the text inside the edit
 function handleAddButton() {
-
   addCardForm.open();
 }
 
 //handler function to update text inside edit profile
 function handleProfileEditSubmit(profileData) {
+  editProfileForm.setLoadingButtonText(true)
+  //use the api patch method here to set the initial user data
+  api.setUserNameInfo(profileData) //when requests succeds use then and catch
+    .then((res) => {
+      console.log(res)
+      userInfo.setUserInfo({
+        name: res.name,
+        description: res.about,
+      }); //this updates the user info to the resopnse received
+    }).catch(console.error).finally(() => {
+      editProfileForm.setLoadingButtonText(false)
+    });
 
-  userInfo.setUserInfo(profileData);
+
   editProfileForm.close();
   //closePopUp(profileEditModal);
 }
 
-function handleCardAddSubmit( newCardData) {
+function handleCardAddSubmit(newCardData) {
 
   const name = newCardData.title; //e.target.title.value // title is the name attribute
   const link = newCardData.link; //e.target.link.value
 
-  const newCard = getCardView({
-    name,
-    link,
-  });
 
-  cardList.addItem(newCard);
-  addCardForm.close();
+
+  api.postNewCard(name, link).then((res) => { //creating the card in the server ,res is the object with all the properties in the server
+    const newCard = getCardView(
+      /*{
+              name,
+              link,
+            }*/
+      res); //just on user interface
+    cardList.addItem(newCard);
+    addCardForm.close();
+  }).catch(error => console.error(error));
+
+
   addFormValidator.disabledButton();
 
 }
@@ -178,13 +216,44 @@ function handleImageClick(name, link) {
   });
 }
 
-function handleDeleteButton() {
+//needs access to the to the id of the card and the card element
+//we want to make use of a closure
+function handleDeleteButton(id, cardElement) {
   areYouDeletingCardPopup.open();
+
+  function handleDeleteSubmit() {
+    // need access to card ID and card element
+    api.deleteACard(id).then(() => {
+      cardElement.remove();
+      areYouDeletingCardPopup.close();
+    })
+  }
+
+  areYouDeletingCardPopup.setSubmitAction(handleDeleteSubmit)
 }
 
 //TODO make it so that you can change the img based on the url provided
-function handleChangeAvatarProfilePic(){
-changeProfilePicPopup.open()
+function handleChangeAvatarProfilePic() {
+  changeProfilePicPopup.open()
+}
+// will take the value of the link property in the object received as argument
+function handleChangeAvatarSubmit({
+  link //the link is the url needed to work with this project
+}) {
+  //  let avatarImg = document.querySelector('.lowheader__img')
+  // avatarImg.src = link;
+
+  //patch method for the avatar using the api
+  api.setAvatarImage(link)
+    .then((res) => {
+      console.log(res)
+      userInfo.setUserAvatar({
+        picture: res.avatar
+      })
+      changeProfilePicPopup.close()
+    })
+    .catch((error) => console.log(">>ERROR", error))
+
 }
 
 
@@ -194,9 +263,40 @@ cardAddBtn.addEventListener("click", handleAddButton);
 changeAvatarIcon.addEventListener("click", handleChangeAvatarProfilePic)
 
 
+//-----USING API
+let cardList; // this will be the default card that's returned from the server
 
 //Using exported api variable from API Class
+
+//Set the initial Card
 api
   .getInitialCards()
-  .then((res) => console.log("Card Data:", res))
+  .then((res) => {
+    // console.log("Card Data:", res)
+    /*const*/
+    cardList = new Section({
+        items: res,
+        renderer: (individualCard) => {
+          renderCard(individualCard);
+        },
+      },
+      cardGallerySection
+    );
+    cardList.renderMethod();
+  })
   .catch((error) => console.log(">>ERROR", error));
+
+
+// Set the initial User picture description
+api.getInitialUser()
+  .then((res) => {
+    //set user info at start
+    userInfo.setUserInfo({
+      name: res.name,
+      description: res.about,
+    });
+    //set image at start
+    userInfo.setUserAvatar({
+      picture: res.avatar
+    })
+  }).catch((error) => console.log(">>ERROR", error))
