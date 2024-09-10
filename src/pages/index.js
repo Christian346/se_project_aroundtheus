@@ -113,7 +113,7 @@ areYouDeletingCardPopup.setEventListeners();
 //new popup for when you decide to change the user's profile pic
 
 const changeProfilePicPopup = new PopupWithForm({
-  modalSelector: ".modal_type_changeprofilepic-js",
+  modalSelector: ".modal_type_change_profile_pic-js",
   handleFormSubmit: handleChangeAvatarSubmit
 })
 changeProfilePicPopup.setEventListeners()
