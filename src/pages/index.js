@@ -37,7 +37,9 @@ import {
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
-import { api } from "../components/Api.js";
+import {
+  api
+} from "../components/Api.js";
 
 //==============ENABLE VALIDATIONS
 const editFormValidator = new FormValidator(
@@ -182,7 +184,7 @@ function handleProfileEditSubmit(profileData) {
         name: res.name,
         description: res.about,
       }); //this updates the user info to the resopnse received
-      //editFormValidator.disabledButton();
+
       editProfileForm.close();
     })
     .catch(console.error)
@@ -196,11 +198,13 @@ function handleProfileEditSubmit(profileData) {
 function handleCardAddSubmit(newCardData) {
   const name = newCardData.title; //e.target.title.value // title is the name attribute
   const link = newCardData.link; //e.target.link.value
+  addCardForm.setLoadingButtonText(true)
 
   api
     .postNewCard(name, link)
     .then((res) => {
       //creating the card in the server ,res is the object with all the properties in the server
+
       const newCard = getCardView(
         /*{
           name,
@@ -212,7 +216,10 @@ function handleCardAddSubmit(newCardData) {
       addFormValidator.disabledButton();
       addCardForm.close();
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => {
+      addCardForm.setLoadingButtonText(false)
+    });
 }
 
 function handleImageClick(name, link) {
@@ -237,7 +244,7 @@ function handleDeleteButton(id, cardElement) {
         cardElement.remove();
         areYouDeletingCardPopup.close();
       })
-      .catch(console.error).finally(()=>{
+      .catch(console.error).finally(() => {
         areYouDeletingCardPopup.setLoadingButtonText(false);
       });
   }
@@ -255,6 +262,7 @@ function handleChangeAvatarSubmit({
   //  let avatarImg = document.querySelector('.lowheader__img')
   // avatarImg.src = link;
 
+  changeProfilePicPopup.setLoadingButtonText(true)
   //patch method for the avatar using the api
   api
     .setAvatarImage(link)
@@ -264,8 +272,12 @@ function handleChangeAvatarSubmit({
         picture: res.avatar,
       });
       changeProfilePicPopup.close();
+      changeAvatarPictureValidator.disabledButton() //disablebutton for next try
     })
-    .catch((error) => console.log(">>ERROR", error));
+    .catch((error) => console.log(">>ERROR", error))
+    .finally(()=>{
+      changeProfilePicPopup.setLoadingButtonText(false)
+    });
 }
 
 //EVENT LISTENERS
@@ -284,8 +296,7 @@ api
   .then((res) => {
     // console.log("Card Data:", res)
     /*const*/
-    cardList = new Section(
-      {
+    cardList = new Section({
         items: res,
         renderer: (individualCard) => {
           renderCard(individualCard);
