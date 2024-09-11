@@ -113,7 +113,7 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 879px) {/*so the final content of the gallery section the display not the screen will be that*/
+@media screen and (max-width: 919px) {/*so the final content of the gallery section the display not the screen will be that*/
   .lowheader {
     flex-direction: column;
     padding-top: 42px;
