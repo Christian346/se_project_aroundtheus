@@ -50,12 +50,12 @@
   border-radius: 50%;
 }
 
-.lowheader__profile_pic_container {
+.lowheader__profile-pic-container {
   position: relative;
   display: inline-block;
 }
 
-.lowheader__edit_icon_container {
+.lowheader__edit-icon-container {
   position: absolute;
   opacity: 0;
   visibility: hidden;
@@ -71,7 +71,7 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
-.lowheader__profile_pic_container:hover .lowheader__edit_icon_container {
+.lowheader__profile-pic-container:hover .lowheader__edit-icon-container {
   visibility: visible;
   opacity: 1;
 }
