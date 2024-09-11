@@ -7,16 +7,19 @@
   padding: 45px 200px 60px;
 }
 
-.thepage__container {
-  max-width: 880px;
-}
-
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: /*919px*/ 879px) {
   .thepage {
     padding: 0;
   }
+}
 
+.thepage__container {
+  min-width:880px;
+}
+
+@media screen and (max-width: 879px) {
   .thepage__container {
-    min-width: 320px;
+    min-width:auto;
+    width: 100%; /*use percetanges when dealing with phone views always relative to the div as opposed to the screen itself*/
   }
 }

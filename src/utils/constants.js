@@ -54,8 +54,17 @@ export const cardTemplate = document.querySelector(".card-template").content.fir
 export const cardGallerySection = document.querySelector(".gallery");
 //this variable is where the cards will be appended or rendered
 export const modals = document.querySelectorAll(".modal")
-
 export const cardSelector = document.querySelector('.card-template')
+//TODO get all trashbin icons
+
+export const deleteCardModal = document.querySelector('.modal_type_delete_card-js')
+
+export const changeAvatarIcon = document.querySelector('.lowheader__editpen')
+
+export const changeAvatarPictureForm = document.querySelector('#changeprofilepic-form')
+
+
+
 
 
 //VALIDATION

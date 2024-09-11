@@ -22,11 +22,21 @@
         </header>
         <main class="content">
           <section class="lowheader">
-            <img
-              src="<%=require('./images/Avatar.png')%>"
-              alt="avatar"
-              class="lowheader__img"
-            />
+            <div class="lowheader__profile-pic-container"><!--underscores are modifiers-->
+              <img
+                src=""
+                alt="avatar"
+                class="lowheader__img"
+              />
+              <div class="lowheader__edit-icon-container"><!--change to editiconcontainer-->
+                <img
+                  src="<%=require('./images/changeprofilepicpen.svg')%>"
+                  alt=""
+                  class ="lowheader__editpen"
+                />
+              </div>
+            </div>
+
             <div class="lowheader__inner">
               <div class="lowheader__textcontainer">
                 <h1 class="lowheader__title">Jacques Cousteau</h1>
@@ -127,6 +137,44 @@
         </div>
       </div>
     </div>
+
+    <!--delete card modal-->
+    <div class="modal modal_type_delete_card-js">
+      <div class="modal__container modal__container_deletion">
+        <form class="modal__form">
+        <button class="modal__close" id="add-close-button" type="button"></button><!--buttons will by default submit-->
+        <h2 class="modal__heading">Are you sure?</h2>
+        <button class="modal__button" id="deletecardsbtn" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
+    <!--change profile pic modal-->
+    <div class="modal modal_type_change_profile_pic-js">
+      <div class="modal__container">
+        <button class="modal__close" id="add-close-button"></button>
+        <h2 class="modal__heading">Change profile pic?</h2>
+        <form class="modal__form" id="changeprofilepic-form">
+          <input
+            type="url"
+            name="link"
+            id="add-description-input"
+            class="modal__input"
+            placeholder="Image Link"
+            required
+          />
+          <span class="modal__error" id="add-description-input-error"></span>
+          <button
+            class="modal__button modal__button_disabled"
+            disabled
+            id="cardsavebtn"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!--picture preview modal-->
     <div class="modal modal_type_picture-js">
       <div class="modal__container modal__container_pictures">
@@ -151,7 +199,11 @@
           type="button"
           aria-label="button to delete"
         >
-          <img src="<%=require('./images/trashcanIcon.svg')%>" class="card__top-bin" alt="" />
+          <img
+            src="<%=require('./images/trashcanIcon.svg')%>"
+            class="card__top-bin"
+            alt=""
+          />
           <img
             src="<%=require('./images/trashIconlowerpart.svg')%>"
             class="card__lower-bin"
@@ -169,9 +221,9 @@
       </article>
     </template>
 
-   <!-- <script type="module" defer src="./pages/index.js"></script> -->
+    <!-- <script type="module" defer src="./pages/index.js"></script> -->
     <!-- <script defer src="./scripts/validation.js"></script> -->
-     <!--dont use live server anymore its npm run dev now!
+    <!--dont use live server anymore its npm run dev now!
      npm run build is for production instead and creates dist files for fonts and images!-->
   </body>
 </html>
